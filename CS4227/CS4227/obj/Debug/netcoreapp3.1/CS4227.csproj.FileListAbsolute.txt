@@ -1,0 +1,14 @@
+C:\Users\Kitara\Desktop\ME\College\4th_Year\Sem_2\CS4227\CS4227\CS4227\bin\Debug\netcoreapp3.1\CS4227.exe
+C:\Users\Kitara\Desktop\ME\College\4th_Year\Sem_2\CS4227\CS4227\CS4227\bin\Debug\netcoreapp3.1\CS4227.deps.json
+C:\Users\Kitara\Desktop\ME\College\4th_Year\Sem_2\CS4227\CS4227\CS4227\bin\Debug\netcoreapp3.1\CS4227.runtimeconfig.json
+C:\Users\Kitara\Desktop\ME\College\4th_Year\Sem_2\CS4227\CS4227\CS4227\bin\Debug\netcoreapp3.1\CS4227.runtimeconfig.dev.json
+C:\Users\Kitara\Desktop\ME\College\4th_Year\Sem_2\CS4227\CS4227\CS4227\bin\Debug\netcoreapp3.1\CS4227.dll
+C:\Users\Kitara\Desktop\ME\College\4th_Year\Sem_2\CS4227\CS4227\CS4227\bin\Debug\netcoreapp3.1\CS4227.pdb
+C:\Users\Kitara\Desktop\ME\College\4th_Year\Sem_2\CS4227\CS4227\CS4227\obj\Debug\netcoreapp3.1\CS4227.csproj.AssemblyReference.cache
+C:\Users\Kitara\Desktop\ME\College\4th_Year\Sem_2\CS4227\CS4227\CS4227\obj\Debug\netcoreapp3.1\CS4227.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kitara\Desktop\ME\College\4th_Year\Sem_2\CS4227\CS4227\CS4227\obj\Debug\netcoreapp3.1\CS4227.AssemblyInfoInputs.cache
+C:\Users\Kitara\Desktop\ME\College\4th_Year\Sem_2\CS4227\CS4227\CS4227\obj\Debug\netcoreapp3.1\CS4227.AssemblyInfo.cs
+C:\Users\Kitara\Desktop\ME\College\4th_Year\Sem_2\CS4227\CS4227\CS4227\obj\Debug\netcoreapp3.1\CS4227.csproj.CoreCompileInputs.cache
+C:\Users\Kitara\Desktop\ME\College\4th_Year\Sem_2\CS4227\CS4227\CS4227\obj\Debug\netcoreapp3.1\CS4227.dll
+C:\Users\Kitara\Desktop\ME\College\4th_Year\Sem_2\CS4227\CS4227\CS4227\obj\Debug\netcoreapp3.1\CS4227.pdb
+C:\Users\Kitara\Desktop\ME\College\4th_Year\Sem_2\CS4227\CS4227\CS4227\obj\Debug\netcoreapp3.1\CS4227.genruntimeconfig.cache
