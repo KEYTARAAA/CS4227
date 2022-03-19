@@ -1,4 +1,5 @@
 ﻿using CS4227.Commands;
+using CS4227.Characters.Enemies;
 using CS4227.Constructs;
 using System;
 using System.Collections.Generic;
@@ -9,42 +10,53 @@ namespace CS4227
     class Game
     {
         Maze maze;
+        Controller controller;
         public Game()
         {
             maze = new Maze();
+            controller = new Controller();
+            MoveDown moveDown = new MoveDown(maze);
+            MoveUp moveUp = new MoveUp(maze);
+            MoveLeft moveLeft = new MoveLeft(maze);
+            MoveRight moveRight = new MoveRight(maze);
+
+            controller.setCommand(moveLeft, 1);
+            controller.setCommand(moveRight, 2);
+            controller.setCommand(moveUp, 3);
+            controller.setCommand(moveDown, 4);
+
         }
 
         public void start()
         {
-            Console.WriteLine("\nType:\ninstructions: to view instructions\nexit: to exit game\nmove direction: move(replace direction with NORTH, SOUTH, EAST OR WEST)");
+            Console.WriteLine("\nType:\ninstructions: to view instructions\nexit: to exit game\n A = LEFT, W = UP, S = DOWN, D = RIGHT");
+            Console.WriteLine(maze.getCurrentRoom().longDescription());
             bool run = true;
             while (run)
-            {
-                run = reciever();
+            {   
+
+                run = terminalInputReciever();
+                Console.WriteLine(maze.getCurrentRoom().longDescription());
+                
+                List<EnemyInterface> enemies = maze.getEnemies();
+                for (int i = 0; i < enemies.Count; i++)
+                {
+                    if(maze.getCurrentRoom() != enemies[i].getRoom())
+                    enemies[i].move();
+                }
             }
         }
 
-        private bool reciever()
+        private bool terminalInputReciever()
         {
             string input = Console.ReadLine().ToUpper();
-            Command command = null;
             string[] inputs =  input.Split(' ');
-            switch (inputs[0]) {
-                default:
-                    return true;
-                case "INSTRUCTIONS":
-                    command = new Instructions();
-                    break;
-                case "MOVE":
-                    command = new Move(inputs, maze);
-                    break;
-                case "EXIT": 
-                    return false;
-
+            if(inputs[0] == "EXIT")
+            {
+                return false;
             }
 
-            Console.WriteLine("\nExecuting command: " + input + "\n");
-            command.execute();
+            controller.keyPressed(inputs[0]);
             return true;
             
             

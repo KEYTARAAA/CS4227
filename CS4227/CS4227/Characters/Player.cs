@@ -37,5 +37,28 @@ namespace CS4227.Characters
             }
         }
 
+        public void moveLeft()
+        {
+            this.roomCol = this.roomCol - 1;
+            Console.WriteLine("Moving Left");
+        }
+
+        public void moveRight()
+        {
+            this.roomCol = this.roomCol + 1;
+            Console.WriteLine("Moving Right");
+        }
+        public void moveUp()
+        {
+            this.roomRow = this.roomRow + 1;
+            Console.WriteLine("Moving Up");
+        }
+
+        public void moveDown()
+        {
+            this.roomRow = this.roomRow - 1;
+            Console.WriteLine("Moving Down");
+        }
+
     }
 }

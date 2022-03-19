@@ -48,6 +48,9 @@ namespace CS4227.Characters
             attack += change;
         }
 
+       
+
+
         abstract public void die();
     }
 }
