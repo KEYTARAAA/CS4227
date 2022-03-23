@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CS4227.BridgePatternEnemyMovement;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 
 namespace CS4227.Characters.Enemies
 {
-    interface EnemyInterface
+    interface IEnemy
     {
         
         public void attack() { }
@@ -13,5 +14,6 @@ namespace CS4227.Characters.Enemies
 
         public string roar() { return ""; }
         public MazeRoom getRoom() { return null; }
+
     }
 }

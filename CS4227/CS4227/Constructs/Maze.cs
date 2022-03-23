@@ -6,6 +6,7 @@ using CS4227.BridgePatternEnemyMovement;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using CS4227.Builder;
 
 namespace CS4227.Constructs
 {
@@ -13,14 +14,14 @@ namespace CS4227.Constructs
     {
         Player player;
         Room[,] rooms;
-        List<EnemyInterface> enemies;
+        List<IEnemy> enemies;
         MazeRoom currentRoom;
         Dictionary<string, MazeRoom> currentExits;
         public Maze()
         {
             player = new Player("Player", 0, 0, 100, 10);
             rooms = new Room[3,3];
-            enemies = new List<EnemyInterface>();
+            enemies = new List<IEnemy>();
             
 
             MazeRoom aRoom = new MazeRoom("a");
@@ -64,16 +65,23 @@ namespace CS4227.Constructs
             {
                  difficulty = new HardMode();
             }
-            BlindMove moveType = new BlindMove();
-            BearEnemy george = new BearEnemy(moveType, "George", iRoom);
-            george.accept(difficulty);
-            enemies.Add(george);
-            iRoom.addEnemyToRoom(george);
-            NormalMove moveType2 = new NormalMove();
-            SnakeEnemy wriggles = new SnakeEnemy(moveType2, "Wriggles", dRoom);
-            wriggles.accept(difficulty);
-            enemies.Add(wriggles);
-            iRoom.addEnemyToRoom(wriggles);
+
+            Director director = new Director();
+            BearEnemyBuilder builder = new BearEnemyBuilder(iRoom);
+            director.setBuilder(builder);
+            director.makeBlindBearEnemy();
+            BearEnemy bear1 = builder.getResult();
+            bear1.accept(difficulty); 
+            enemies.Add(bear1);
+            iRoom.addEnemyToRoom(bear1);
+
+            builder.reset();
+            director.makeNormalBearEnemy();
+            BearEnemy bear2 = builder.getResult();
+            bear2.accept(difficulty);
+            enemies.Add(bear2);
+            iRoom.addEnemyToRoom(bear2);
+
         }
 
         public void movePlayer(Direction direction)
@@ -127,7 +135,7 @@ namespace CS4227.Constructs
             this.currentRoom = room;
         }
 
-        public List<EnemyInterface> getEnemies()
+        public List<IEnemy> getEnemies()
         {
             return this.enemies;
         }

@@ -38,7 +38,7 @@ namespace CS4227
                 run = terminalInputReciever();
                 Console.WriteLine(maze.getCurrentRoom().longDescription());
                 
-                List<EnemyInterface> enemies = maze.getEnemies();
+                List<IEnemy> enemies = maze.getEnemies();
                 for (int i = 0; i < enemies.Count; i++)
                 {
                     if(maze.getCurrentRoom() != enemies[i].getRoom())

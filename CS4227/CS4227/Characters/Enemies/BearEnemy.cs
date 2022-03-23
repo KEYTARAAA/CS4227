@@ -9,7 +9,7 @@ using CS4227.Visitor;
 
 namespace CS4227.Characters.Enemies
 {
-    class BearEnemy: EnemyInterface, Visitable
+    class BearEnemy: IEnemy, Visitable
     {
         MovementInterface movementType;
         string name;
@@ -20,8 +20,10 @@ namespace CS4227.Characters.Enemies
             this.movementType = movementType;
             this.name = name;
             this.room = room;
-            
+        }
 
+        public BearEnemy()
+        {
         }
 
         public void attack() { }
@@ -58,6 +60,19 @@ namespace CS4227.Characters.Enemies
             this.health = health;
         }
 
+        public void setMovementType(MovementInterface movementType)
+        {
+            this.movementType = movementType;
+        }
 
+        public void setRoom(MazeRoom room)
+        {
+            this.room = room;
+        }
+
+        public void setName(String name)
+        {
+            this.name = name;
+        }
     }
 }
