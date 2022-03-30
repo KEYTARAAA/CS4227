@@ -9,38 +9,11 @@ using CS4227.Visitor;
 
 namespace CS4227.Characters.Enemies
 {
-    class BearEnemy: EnemyInterface, Visitable
+    class BearEnemy: Enemy, Visitable
     {
-        MovementInterface movementType;
-        string name;
-        MazeRoom room;
-        double health = 100;
-        public BearEnemy(MovementInterface movementType, string name, MazeRoom room)
+        public BearEnemy(string name, int startingRoomRow, int startingRoomCol, int health, int attack, string sound, MovementInterface movementType) : base(name, startingRoomRow, startingRoomCol, health, attack, sound, movementType)
         {
-            this.movementType = movementType;
-            this.name = name;
-            this.room = room;
-            
-
-        }
-
-        public void attack() { }
-        public void move()
-        {
-            MazeRoom newRoom = movementType.move(room);
-            newRoom.addEnemyToRoom(this);
-            this.room.removeEnemyFromRoom(this);
-            this.room = newRoom;
-        }
-
-        public string roar()
-        {
-           return "ROARRRRRRRR";
-        }
-
-        public MazeRoom getRoom()
-        {
-            return this.room;
+            this.type = "BEAR";
         }
 
         public void accept(VisitorInterface visitor)
@@ -48,16 +21,9 @@ namespace CS4227.Characters.Enemies
             visitor.visit(this);
         }
 
-        public double getHealth()
+        public override void die()
         {
-            return this.health;
+            dead = true;
         }
-
-        public void setHealth(double health)
-        {
-            this.health = health;
-        }
-
-
     }
 }

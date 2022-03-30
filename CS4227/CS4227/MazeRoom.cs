@@ -9,7 +9,7 @@ namespace CS4227
     {
         string description;
         Dictionary<string, MazeRoom> exits;
-        List<EnemyInterface> enemies = new List<EnemyInterface>();
+       // List<EnemyInterface> enemies = new List<EnemyInterface>();
 
         public MazeRoom(string description)
         {
@@ -19,7 +19,7 @@ namespace CS4227
             this.exits["south"] = null;
             this.exits["east"] = null;
             this.exits["west"] = null;
-            List<EnemyInterface> enemies = new List<EnemyInterface>();
+            //List<EnemyInterface> enemies = new List<EnemyInterface>();
         }
 
         public void setExits(MazeRoom north, MazeRoom south, MazeRoom east, MazeRoom west)
@@ -40,7 +40,7 @@ namespace CS4227
             return description;
         }
 
-        public string longDescription()
+        /*public string longDescription()
         {
             string enemiesString = "";
             for (int i = 0; i < this.enemies.Count; i++)
@@ -48,7 +48,7 @@ namespace CS4227
                 enemiesString += enemies[i].roar() + " ";
             }
             return "room = " + description + "\n" + exitString() + "\n" + enemiesString;
-        }
+        }*/
 
         public string exitString()
         {
@@ -69,7 +69,7 @@ namespace CS4227
             return exits;
         }
 
-        public void addEnemyToRoom(EnemyInterface enemy)
+        /*public void addEnemyToRoom(EnemyInterface enemy)
         {
             this.enemies.Add(enemy);
         }
@@ -77,7 +77,7 @@ namespace CS4227
         public void removeEnemyFromRoom(EnemyInterface enemy)
         {
             this.enemies.Remove(enemy);
-        }
+        }*/
     }
 
     

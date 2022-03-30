@@ -4,51 +4,51 @@ using System.Text;
 
 namespace CS4227.Commands
 {
-    class Controller
+    /*class Controller
     {
-        Command moveLeftCommand;
-        Command moveRightCommand;
-        Command moveUpCommand;
-        Command moveDownCommand;
+        Command moveWestCommand;
+        Command moveEastCommand;
+        Command moveNorthCommand;
+        Command moveSouthCommand;
         public void setCommand(Command command, int i)
         {
             if(i == 1)
             {
-                moveLeftCommand = command;
+                moveWestCommand = command;
             }
             if(i == 2)
             {
-                moveRightCommand = command;
+                moveEastCommand = command;
             }
             if(i == 3)
             {
-                moveUpCommand = command;
+                moveNorthCommand = command;
             }
             if(i == 4)
             {
-                moveDownCommand = command;
+                moveSouthCommand = command;
             }
         }
 
         public void keyPressed(string s)
         {
-            if(s == "A")
+            if(s == "W")
             {
-                moveLeftCommand.execute();
+                moveWestCommand.execute();
             }
             if(s == "S")
             {
-                moveDownCommand.execute();
+                moveSouthCommand.execute();
             }
-            if(s == "D")
+            if(s == "E")
             {
-                moveRightCommand.execute();
+                moveEastCommand.execute();
             }
-            if(s == "W")
+            if(s == "N")
             {
-                moveUpCommand.execute();
+                moveNorthCommand.execute();
             }
 
         }
-    }
+    }*/
 }

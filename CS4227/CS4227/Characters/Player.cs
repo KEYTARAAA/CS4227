@@ -18,24 +18,6 @@ namespace CS4227.Characters
 
         }
 
-        public void move(Direction direction)
-        {
-            switch (direction)
-            {
-                case Direction.NORTH:
-                    roomRow -= 1;
-                    break;
-                case Direction.SOUTH:
-                    roomRow += 1;
-                    break;
-                case Direction.EAST:
-                    roomCol -= 1;
-                    break;
-                case Direction.WEST:
-                    roomCol += 1;
-                    break;
-            }
-        }
 
         public void moveLeft()
         {

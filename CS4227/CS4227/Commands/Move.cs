@@ -8,48 +8,19 @@ namespace CS4227.Commands
 {
     class Move: Command
     {
-        Direction direction;
         Maze maze;
-        bool directionSet = false;
-        public Move(string[] directionString,  Maze maze)
+        Direction direction;
+
+        public Move(Maze maze, Direction direction)
         {
             this.maze = maze;
-            if (directionString.Length > 1) {
-                switch (directionString[1])
-                {
-                    case "NORTH":
-                        direction = Direction.NORTH;
-                        directionSet = true;
-                        break;
-                    case "SOUTH":
-                        direction = Direction.SOUTH;
-                        directionSet = true;
-                        break;
-                    case "EAST":
-                        direction = Direction.EAST;
-                        directionSet = true;
-                        break;
-                    case "WEST":
-                        direction = Direction.WEST;
-                        directionSet = true;
-                        break;
-                }
-            }
+            this.direction = direction;
         }
 
         public void execute()
         {
-            if (directionSet)
-            {
-                maze.movePlayer(direction);
-            }else{
-                Console.WriteLine("\nDirection does not exist!\n");
-            }
-        }
-
-        public void undo()
-        {
-            
+            maze.movePlayer(direction);
+            maze.moveEnemies();
         }
     }
 }
