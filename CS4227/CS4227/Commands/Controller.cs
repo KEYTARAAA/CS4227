@@ -4,12 +4,14 @@ using System.Text;
 
 namespace CS4227.Commands
 {
-    /*class Controller
+    class Controller
     {
         Command moveWestCommand;
         Command moveEastCommand;
         Command moveNorthCommand;
         Command moveSouthCommand;
+        Command attackCommand;
+        Command lastCommand;
         public void setCommand(Command command, int i)
         {
             if(i == 1)
@@ -28,27 +30,45 @@ namespace CS4227.Commands
             {
                 moveSouthCommand = command;
             }
+            if(i == 5)
+            {
+                attackCommand = command;
+            }
         }
 
         public void keyPressed(string s)
         {
-            if(s == "W")
+            if(s == "A")
             {
                 moveWestCommand.execute();
+                lastCommand = moveWestCommand;
             }
             if(s == "S")
             {
                 moveSouthCommand.execute();
+                lastCommand = moveSouthCommand;
             }
-            if(s == "E")
+            if(s == "D")
             {
                 moveEastCommand.execute();
+                lastCommand = moveEastCommand;
             }
-            if(s == "N")
+            if(s == "W")
             {
                 moveNorthCommand.execute();
+                lastCommand = moveNorthCommand;
+            }
+            if (s == "C")
+            {
+                attackCommand.execute();
+                lastCommand = attackCommand;
             }
 
         }
-    }*/
+
+        public string getLastCommand()
+        {
+            return lastCommand.getType();
+        }
+    }
 }

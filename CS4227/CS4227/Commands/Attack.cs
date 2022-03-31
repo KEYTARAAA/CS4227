@@ -15,7 +15,12 @@ namespace CS4227.Commands
         public void execute()
         {
             maze.playerAttack();
-            maze.moveEnemies();
+            
+        }
+
+        public string getType()
+        {
+            return "Attack";
         }
     }
 }

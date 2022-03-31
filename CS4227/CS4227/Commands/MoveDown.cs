@@ -1,26 +1,30 @@
-﻿using CS4227.Constructs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CS4227.Constructs;
+
 
 namespace CS4227.Commands
 {
-    class Map : Command
+    class MoveDown : Command
     {
         Maze maze;
 
-        public Map(Maze maze)
+        public MoveDown(Maze maze)
         {
             this.maze = maze;
         }
+
         public void execute()
         {
-            maze.printMaze();
+            maze.movePlayerDown();
         }
+
+        public void undo() { }
 
         public string getType()
         {
-            return "";
+            return "MoveDown";
         }
     }
 }
