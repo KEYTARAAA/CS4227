@@ -9,7 +9,7 @@ namespace CS4227.Commands
         public Instructions() { }
         public void execute()
         {
-            Console.WriteLine("\nType:\ninstructions: to view instructions\nexit: to exit game\nmove direction: move (replace direction with NORTH, SOUTH, EAST OR WEST)");
+            Console.WriteLine(CONSTS.INSTRUCTIONS);
         }
         public void undo()
         {

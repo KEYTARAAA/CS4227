@@ -8,7 +8,7 @@ namespace CS4227.Constructs
     {
         bool isLocked = true;
         string keyName;
-        public LockedRoom(int row, int col, string name, string keyName) : base(row, col, name)
+        public LockedRoom(int row, int col, string name, string mapName, string keyName) : base(row, col, name, mapName)
         {
             this.keyName = keyName;
         }

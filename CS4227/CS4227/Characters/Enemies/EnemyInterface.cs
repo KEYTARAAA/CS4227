@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CS4227.Characters.Enemies
 {
-    interface EnemyInterface
+    /*interface EnemyInterface
     {
         
         public void attack() { }
@@ -13,5 +13,5 @@ namespace CS4227.Characters.Enemies
 
         public string roar() { return ""; }
         public MazeRoom getRoom() { return null; }
-    }
+    }*/
 }

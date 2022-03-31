@@ -8,6 +8,7 @@ namespace CS4227.Characters
     {
         protected int roomRow, roomCol, health, attack;
         protected string name;
+        protected bool dead = false;
 
         public Character(string name, int startingRoomRow, int startingRoomCol, int health, int attack)
         {
@@ -39,16 +40,33 @@ namespace CS4227.Characters
             return attack;
         }
 
-        public void changeHealth(int change)
+        public void setHealth(int health)
         {
-            health += change;
+            this.health = health;
         }
-        public void changeAttack(int change)
+        public void setAttack(int attack)
         {
-            attack += change;
+            this.attack = attack;
         }
 
-       
+       public void move(Direction direction)
+        {
+            switch (direction)
+            {
+                case Direction.NORTH:
+                    roomRow--;
+                    break;
+                case Direction.SOUTH:
+                    roomRow++;
+                    break;
+                case Direction.EAST:
+                    roomCol++;
+                    break;
+                case Direction.WEST:
+                    roomCol--;
+                    break;
+            }
+        }
 
 
         abstract public void die();

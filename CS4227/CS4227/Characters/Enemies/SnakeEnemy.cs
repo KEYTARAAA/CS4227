@@ -8,37 +8,11 @@ using CS4227.Visitor;
 
 namespace CS4227.Characters.Enemies
 {
-    class SnakeEnemy : EnemyInterface
+    class SnakeEnemy : Enemy
     {
-
-        MovementInterface movementType;
-        string name;
-        MazeRoom room;
-        double health = 100;
-        public SnakeEnemy(MovementInterface movementType, string name, MazeRoom room)
+        public SnakeEnemy(string name, int startingRoomRow, int startingRoomCol, int health, int attack, string sound, MovementInterface movementType) : base(name, startingRoomRow, startingRoomCol, health, attack, sound, movementType)
         {
-            this.movementType = movementType;
-            this.name = name;
-            this.room = room;
-            room.addEnemyToRoom(this);
-
-        }
-
-        public void attack() { }
-        public void move()
-        {
-            MazeRoom newRoom = movementType.move(room);
-            newRoom.addEnemyToRoom(this);
-            this.room.removeEnemyFromRoom(this);
-            this.room = newRoom;
-        }
-        public string roar()
-        {
-            return "HISSSSSSSSSSSSSSSSS!";
-        }
-        public MazeRoom getRoom()
-        {
-            return this.room;
+            this.type = "SNAKE";
         }
 
         public void accept(VisitorInterface visitor)
@@ -46,14 +20,9 @@ namespace CS4227.Characters.Enemies
             visitor.visit(this);
         }
 
-        public double getHealth()
+        public override void die()
         {
-            return this.health;
-        }
-
-        public void setHealth(double health)
-        {
-            this.health = health;
+            dead = true;
         }
     }
 }
