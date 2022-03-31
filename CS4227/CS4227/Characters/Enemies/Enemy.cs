@@ -28,5 +28,18 @@ namespace CS4227.Characters.Enemies
         {
             return type;
         }
+
+        override
+        public string ToString()
+        {
+            return type + " " + name + ": Health: " + health + " Attack: " + attack;
+        }
+        override
+        public void die()
+        {
+            dead = true;
+
+            Console.WriteLine("You have defeated " + type + " "+ name);
+        }
     }
 }

@@ -42,5 +42,9 @@ namespace CS4227.Characters
             Console.WriteLine("Moving Down");
         }
 
+        public override string ToString()
+        {
+            return name + ": Health: " + health + " Attack: " + attack;
+        }
     }
 }

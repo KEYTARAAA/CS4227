@@ -43,10 +43,19 @@ namespace CS4227.Characters
         public void setHealth(int health)
         {
             this.health = health;
+            if (health <= 0)
+            {
+                die();
+            }
         }
         public void setAttack(int attack)
         {
             this.attack = attack;
+        }
+
+        public void attackOther(Character other)
+        {
+            other.setHealth(other.health - this.attack);
         }
 
        public void move(Direction direction)
@@ -67,6 +76,18 @@ namespace CS4227.Characters
                     break;
             }
         }
+
+        public bool getDead()
+        {
+            return dead;
+        }
+        public void setDead(bool dead)
+        {
+            this.dead = dead;
+        }
+
+        override
+        abstract public string ToString();
 
 
         abstract public void die();
