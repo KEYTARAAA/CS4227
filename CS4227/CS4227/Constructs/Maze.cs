@@ -176,7 +176,10 @@ namespace CS4227.Constructs
 
         private void checkConnections()
         {
+            //Algorthm to fully connect maze
 
+
+            //STEP 1: all rooms have at least 1 neighbour
             for (int row = 0; row < rooms.GetLength(0); row++)
             {
                 for (int col = 0; col < rooms.GetLength(1); col++)
@@ -188,6 +191,7 @@ namespace CS4227.Constructs
                 }
             }
 
+            //STEP 2: 1 room per rouw connects to next row
             for (int row = 0; row < rooms.GetLength(0); row++)
             {
                 int twoNeighbours = 0;
@@ -204,6 +208,7 @@ namespace CS4227.Constructs
                 }
             }
 
+            //STEP 3: 1 room maze has 3 neighbours
             int threeNeighbours = 0;
             for (int row = 0; row < rooms.GetLength(0); row++)
             {
@@ -344,9 +349,32 @@ namespace CS4227.Constructs
         {
             foreach (Enemy enemy in enemies)
             {
-                if ( ! ( ( enemy.getRoomRow() == player.getRoomRow() ) && ( enemy.getRoomCol() == player.getRoomCol() ) ) ) 
+                if (!((enemy.getRoomRow() == player.getRoomRow()) && (enemy.getRoomCol() == player.getRoomCol())))
                 {
                     enemy.move(rooms[enemy.getRoomRow(), enemy.getRoomCol()].getExits());
+                }
+            }
+            enemiesAttack();
+        }
+        public void enemiesAttack()
+        {
+            foreach (Enemy enemy in enemies)
+            {
+                if (((enemy.getRoomRow() == player.getRoomRow()) && (enemy.getRoomCol() == player.getRoomCol())))
+                {
+                    if (!enemy.getDead()) {
+                        enemy.attackOther(player);
+                    }
+                }
+            }
+        }
+        public void playerAttack()
+        {
+            foreach (Enemy enemy in enemies)
+            {
+                if (((enemy.getRoomRow() == player.getRoomRow()) && (enemy.getRoomCol() == player.getRoomCol())))
+                {
+                    player.attackOther(enemy);
                 }
             }
         }
@@ -368,12 +396,13 @@ namespace CS4227.Constructs
         public void refresh()
         {
 
-            Console.WriteLine(getCurrentRoom().getLongDescription());
+            Console.WriteLine("\n" + getCurrentRoom().getLongDescription());
+            Console.WriteLine(player.ToString());
             foreach (Enemy e in enemies)
             {
-                if (rooms[e.getRoomRow(), e.getRoomCol()] == getCurrentRoom())
+                if (rooms[e.getRoomRow(), e.getRoomCol()] == getCurrentRoom() && (!e.getDead()))
                 {
-                    Console.WriteLine(e.getType()+ " " + e.getName());
+                    Console.WriteLine("\n" + e.ToString());
                     e.speak();
                 }
             }

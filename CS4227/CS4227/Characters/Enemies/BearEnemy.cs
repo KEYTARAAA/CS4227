@@ -21,9 +21,5 @@ namespace CS4227.Characters.Enemies
             visitor.visit(this);
         }
 
-        public override void die()
-        {
-            dead = true;
-        }
     }
 }

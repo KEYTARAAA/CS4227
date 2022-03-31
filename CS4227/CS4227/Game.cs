@@ -62,6 +62,9 @@ namespace CS4227
                 case ("W"):
                     c = new Move(maze, Direction.WEST);
                     break;
+                case ("A"):
+                    c = new Attack(maze);
+                    break;
                 case ("EXIT"):
                     c = new Exit();
                     break;
