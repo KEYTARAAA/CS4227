@@ -10,5 +10,9 @@ namespace CS4227.Commands
         {
             Environment.Exit(0);
         }
+        public string getType()
+        {
+            return "";
+        }
     }
 }

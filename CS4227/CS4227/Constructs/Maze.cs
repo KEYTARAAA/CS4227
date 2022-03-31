@@ -337,13 +337,39 @@ namespace CS4227.Constructs
 
         }
 
-        public void movePlayer(Direction direction)
+        public void movePlayerDown()
         {
-            if (roomExists(direction, rooms[player.getRoomRow(), player.getRoomCol()]))
+            if (roomExists(Direction.SOUTH, rooms[player.getRoomRow(), player.getRoomCol()]))
             {
-                player.move(direction);
+                player.move(Direction.SOUTH);
             }
         }
+
+        public void movePlayerUp()
+        {
+            if (roomExists(Direction.NORTH, rooms[player.getRoomRow(), player.getRoomCol()]))
+            {
+                player.move(Direction.NORTH);
+            }
+        }
+
+        public void movePlayerEast()
+        {
+            if (roomExists(Direction.EAST, rooms[player.getRoomRow(), player.getRoomCol()]))
+            {
+                player.move(Direction.EAST);
+            }
+        }
+
+        public void movePlayerWest()
+        {
+            if (roomExists(Direction.WEST, rooms[player.getRoomRow(), player.getRoomCol()]))
+            {
+                player.move(Direction.WEST);
+            }
+        }
+
+
 
         public void moveEnemies()
         {
@@ -416,6 +442,17 @@ namespace CS4227.Constructs
         public Room getCurrentRoom()
         {
             return rooms[player.getRoomRow(), player.getRoomCol()];
+        }
+
+        public string getFull()
+        {
+            string full = getPlayer().getHealth().ToString() + ",";
+            foreach (Enemy enemy in enemies)
+            {
+                full += enemy.getName() + "," + enemy.getHealth().ToString() + ",";
+            }
+            full = full.Remove(full.Length - 1, 1);
+            return full;
         }
 
     }
