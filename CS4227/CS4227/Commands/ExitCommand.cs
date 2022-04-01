@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CS4227.Commands
 {
-    class Exit : Command
+    class ExitCommand : Command
     {
         public void execute()
         {

@@ -6,6 +6,7 @@ using CS4227.BridgePatternEnemyMovement;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using CS4227.Characters.Items;
 
 namespace CS4227.Constructs
 {
@@ -15,6 +16,7 @@ namespace CS4227.Constructs
         Room[,] rooms;
         Random rnd;
         List<Enemy> enemies;
+        List<Item> items;
         MazeRoom currentRoom;
         Dictionary<string, MazeRoom> currentExits;
         public Maze()
@@ -22,10 +24,10 @@ namespace CS4227.Constructs
             player = new Player("Player", 0, 0, 100, 10);
             rooms = new Room[3,3];
             enemies = new List<Enemy>();
+            items = new List<Item>();
             rnd = new Random();
 
             genRooms();
-            printMaze();
 
             Console.WriteLine("Type E for Easy or H for Hard");
             string input = Console.ReadLine().ToUpper();
@@ -45,6 +47,9 @@ namespace CS4227.Constructs
             {
                  difficulty = new HardMode();
             }
+
+            printMaze();
+
             ClockwiseMove moveType = new ClockwiseMove();
             BearEnemy george = new BearEnemy( "George", 2, 2, 50, 2,"ROARRRRR", moveType);
             george.accept(difficulty);
@@ -53,6 +58,12 @@ namespace CS4227.Constructs
             SnakeEnemy wriggles = new SnakeEnemy("Wriggles", 1, 1, 5, 30,"HISSSSSS", moveType2);
             wriggles.accept(difficulty);
             enemies.Add(wriggles);
+
+            Item key = new Item("Key");
+            StatChangingItem sword = new StatChangingItem("Sword", (new Dictionary<STAT, int>() {[STAT.ATTACK] = 10 }));
+            items.Add(key);
+            items.Add(sword);
+            placeItems();
         }
 
         private void genRooms()
@@ -213,6 +224,46 @@ namespace CS4227.Constructs
                     }
                 }
             }
+
+            finalCheck();
+        }
+
+        void finalCheck()
+        {
+            foreach (Room r in rooms)
+            {
+                if (countNeighbours(r) == 1)
+                {
+                    List<Direction> exits = r.getExits();
+
+                    foreach (Direction d in exits)
+                    {
+                        int row = r.getRow();
+                        int col = r.getCol();
+
+                        switch (d)
+                        {
+                            case Direction.NORTH:
+                                row--;
+                                break;
+                            case Direction.SOUTH:
+                                row++;
+                                break;
+                            case Direction.EAST:
+                                col++;
+                                break;
+                            case Direction.WEST:
+                                col--;
+                                break;
+                        }
+
+                        if (countNeighbours(rooms[row, col]) == 1)
+                        {
+                            setRandomNeighbour(rooms[row, col]);
+                        }
+                    }
+                }
+            }
         }
 
         private int countNeighbours(Room room)
@@ -309,12 +360,20 @@ namespace CS4227.Constructs
             }
         }
 
+        private void placeItems()
+        {
+            foreach (Item item in items)
+            {
+                item.setRoom(rnd.Next(rooms.GetLength(0)), rnd.Next(rooms.GetLength(0)));
+            }
+        }
+
         public void moveAll()
         {
 
         }
 
-        public void movePlayerDown()
+        public void movePlayerSouth()
         {
             if (roomExists(Direction.SOUTH, rooms[player.getRoomRow(), player.getRoomCol()]))
             {
@@ -322,7 +381,7 @@ namespace CS4227.Constructs
             }
         }
 
-        public void movePlayerUp()
+        public void movePlayerNorth()
         {
             if (roomExists(Direction.NORTH, rooms[player.getRoomRow(), player.getRoomCol()]))
             {
@@ -382,6 +441,28 @@ namespace CS4227.Constructs
             }
         }
 
+        public void playerInventory()
+        {
+            player.printInventory();
+        }
+        public void playerPickUp()
+        {
+            List<Item> toRemove = new List<Item>();
+            foreach (Item item in items)
+            {
+                if (rooms[item.getRoomRow(), item.getRoomCol()] == getCurrentRoom())
+                {
+                    player.addInventory(item);
+                    toRemove.Add(item);
+                }
+            }
+
+            foreach (Item item in toRemove)
+            {
+                items.Remove(item);
+            }
+        }
+
         public void setRoom(MazeRoom room)
         {
             this.currentRoom = room;
@@ -392,6 +473,8 @@ namespace CS4227.Constructs
             return this.enemies;
         }
 
+
+
         
 
        
@@ -401,6 +484,20 @@ namespace CS4227.Constructs
 
             Console.WriteLine("\n" + getCurrentRoom().getLongDescription());
             Console.WriteLine(player.ToString());
+            bool first = true;
+            foreach (Item i in items)
+            {
+                if (rooms[i.getRoomRow(), i.getRoomCol()] == getCurrentRoom())
+                {
+                    if (first)
+                    {
+                        Console.WriteLine("\nItems:");
+                        first = false;
+                    }
+                    Console.WriteLine(i.getName());
+                }
+            }
+
             foreach (Enemy e in enemies)
             {
                 if (rooms[e.getRoomRow(), e.getRoomCol()] == getCurrentRoom() && (!e.getDead()))

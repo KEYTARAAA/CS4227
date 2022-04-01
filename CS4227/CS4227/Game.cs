@@ -35,15 +35,17 @@ namespace CS4227
             //db.createFile("sean");
 
             controller = new Controller();
-            Command emptyCommand = new Empty();
-            Command moveSouthCommand = new MoveDown(maze);
-            Command moveNorthCommand = new MoveUp(maze);
-            Command moveWestCommand = new MoveLeft(maze);
-            Command moveEastCommand = new MoveRight(maze);
-            Command attackCommand = new Attack(maze);
-            Command mapCommand = new Map(maze);
-            Command instructionCommand = new Instructions();
-            Command exitCommand = new Exit();
+            Command emptyCommand = new EmptyCommand();
+            Command moveSouthCommand = new MoveSouthCommand(maze);
+            Command moveNorthCommand = new MoveNorthCommand(maze);
+            Command moveWestCommand = new MoveWestCommand(maze);
+            Command moveEastCommand = new MoveEastCommand(maze);
+            Command attackCommand = new AttackCommand(maze);
+            Command mapCommand = new MapCommand(maze);
+            Command instructionCommand = new InstructionsCommand();
+            Command pickUpCommand = new PickUpCommand(maze);
+            Command inventoryCommand = new InventoryCommand(maze);
+            Command exitCommand = new ExitCommand();
             controller.setCommand(emptyCommand, 0);
             controller.setCommand(moveWestCommand, 1);
             controller.setCommand(moveEastCommand, 2);
@@ -52,7 +54,9 @@ namespace CS4227
             controller.setCommand(attackCommand, 5);
             controller.setCommand(mapCommand, 6);
             controller.setCommand(instructionCommand, 7);
-            controller.setCommand(exitCommand, 8);
+            controller.setCommand(pickUpCommand, 8);
+            controller.setCommand(inventoryCommand, 9);
+            controller.setCommand(exitCommand, 10);
 
 
         }
