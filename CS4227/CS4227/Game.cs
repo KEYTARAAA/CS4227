@@ -35,16 +35,24 @@ namespace CS4227
             //db.createFile("sean");
 
             controller = new Controller();
-            Command moveDown = new MoveDown(maze);
-            Command moveUp = new MoveUp(maze);
-            Command moveLeft = new MoveLeft(maze);
-            Command moveRight = new MoveRight(maze);
+            Command emptyCommand = new Empty();
+            Command moveSouthCommand = new MoveDown(maze);
+            Command moveNorthCommand = new MoveUp(maze);
+            Command moveWestCommand = new MoveLeft(maze);
+            Command moveEastCommand = new MoveRight(maze);
             Command attackCommand = new Attack(maze);
-            controller.setCommand(moveLeft, 1);
-            controller.setCommand(moveRight, 2);
-            controller.setCommand(moveUp, 3);
-            controller.setCommand(moveDown, 4);
+            Command mapCommand = new Map(maze);
+            Command instructionCommand = new Instructions();
+            Command exitCommand = new Exit();
+            controller.setCommand(emptyCommand, 0);
+            controller.setCommand(moveWestCommand, 1);
+            controller.setCommand(moveEastCommand, 2);
+            controller.setCommand(moveNorthCommand, 3);
+            controller.setCommand(moveSouthCommand, 4);
             controller.setCommand(attackCommand, 5);
+            controller.setCommand(mapCommand, 6);
+            controller.setCommand(instructionCommand, 7);
+            controller.setCommand(exitCommand, 8);
 
 
         }
@@ -104,14 +112,10 @@ namespace CS4227
             }
         }
 
-        private Boolean terminalInputReciever()
+        private bool terminalInputReciever()
         {
             string input = Console.ReadLine().ToUpper();
             string[] inputs = input.Split(' ');
-            if (inputs[0] == "EXIT")
-            {
-                return false;
-            }
 
             controller.keyPressed(inputs[0]);
             maze.moveEnemies();

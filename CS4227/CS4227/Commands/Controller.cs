@@ -11,59 +11,79 @@ namespace CS4227.Commands
         Command moveNorthCommand;
         Command moveSouthCommand;
         Command attackCommand;
+        Command mapCommand;
+        Command instructionsCommand;
+        Command exitCommand;
+        Command emptyCommand;
         Command lastCommand;
         public void setCommand(Command command, int i)
         {
-            if(i == 1)
+
+            switch (i)
             {
-                moveWestCommand = command;
+                case 0:
+                    emptyCommand = command;
+                    break;
+                case 1:
+                    moveWestCommand = command;
+                    break;
+                case 2:
+                    moveEastCommand = command;
+                    break;
+                case 3:
+                    moveNorthCommand = command;
+                    break;
+                case 4:
+                    moveSouthCommand = command;
+                    break;
+                case 5:
+                    attackCommand = command;
+                    break;
+                case 6:
+                    mapCommand = command;
+                    break;
+                case 7:
+                    instructionsCommand = command;
+                    break;
+                case 8:
+                    exitCommand = command;
+                    break;
             }
-            if(i == 2)
-            {
-                moveEastCommand = command;
-            }
-            if(i == 3)
-            {
-                moveNorthCommand = command;
-            }
-            if(i == 4)
-            {
-                moveSouthCommand = command;
-            }
-            if(i == 5)
-            {
-                attackCommand = command;
-            }
+            lastCommand = command;
         }
 
         public void keyPressed(string s)
         {
-            if(s == "A")
+            switch (s)
             {
-                moveWestCommand.execute();
-                lastCommand = moveWestCommand;
+                case "N":
+                    moveNorthCommand.execute();
+                    break;
+                case "S":
+                    moveSouthCommand.execute();
+                    break;
+                case "E":
+                    moveEastCommand.execute();
+                    break;
+                case "W":
+                    moveWestCommand.execute();
+                    break;
+                case "A":
+                    attackCommand.execute();
+                    break;
+                case "M":
+                    mapCommand.execute();
+                    break;
+                case "?":
+                    instructionsCommand.execute();
+                    break;
+                case "EXIT":
+                    exitCommand.execute();
+                    break;
+                default:
+                    emptyCommand.execute();
+                    break;
             }
-            if(s == "S")
-            {
-                moveSouthCommand.execute();
-                lastCommand = moveSouthCommand;
-            }
-            if(s == "D")
-            {
-                moveEastCommand.execute();
-                lastCommand = moveEastCommand;
-            }
-            if(s == "W")
-            {
-                moveNorthCommand.execute();
-                lastCommand = moveNorthCommand;
-            }
-            if (s == "C")
-            {
-                attackCommand.execute();
-                lastCommand = attackCommand;
-            }
-
         }
 
         public string getLastCommand()

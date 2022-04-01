@@ -27,29 +27,6 @@ namespace CS4227.Constructs
             genRooms();
             printMaze();
 
-            /*MazeRoom aRoom = new MazeRoom("a");
-            currentRoom = aRoom;
-            MazeRoom bRoom = new MazeRoom("b");
-            MazeRoom cRoom = new MazeRoom("c");
-            MazeRoom dRoom = new MazeRoom("d");
-            MazeRoom eRoom = new MazeRoom("e");
-            MazeRoom fRoom = new MazeRoom("f");
-            MazeRoom gRoom = new MazeRoom("g");
-            MazeRoom hRoom = new MazeRoom("h");
-            MazeRoom iRoom = new MazeRoom("i");
-            MazeRoom jRoom = new MazeRoom("j");
-            // N, S, E, W
-            asetExits(null, dRoom, bRoom, null);
-            currentExits = aRoom.getExits();
-            bsetExits(null, eRoom, cRoom, aRoom);
-            csetExits(null, null, null, bRoom);
-            dsetExits(aRoom, gRoom, null, null);
-            esetExits(bRoom, null, fRoom, null);
-            fsetExits(null, iRoom, null, eRoom);
-            gsetExits(dRoom, null, null, null);
-            //hsetExits(null, iRoom, null, eRoom);
-            isetExits(fRoom, null, null, null);*/
-
             Console.WriteLine("Type E for Easy or H for Hard");
             string input = Console.ReadLine().ToUpper();
             string[] inputs = input.Split(' ');
