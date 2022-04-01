@@ -28,8 +28,8 @@ namespace CS4227.Interceptors
                 myInts[0] += 1;
             }
 
-            if (contextObject.getCommand() == "MoveUp" || contextObject.getCommand() == "MoveDown" 
-                || contextObject.getCommand() == "MoveLeft" || contextObject.getCommand() == "MoveRight")
+            if (contextObject.getCommand() == "MoveNorth" || contextObject.getCommand() == "MoveSouth" 
+                || contextObject.getCommand() == "MoveWest" || contextObject.getCommand() == "MoveEast")
             {
                 myInts[4] += 1;
             }

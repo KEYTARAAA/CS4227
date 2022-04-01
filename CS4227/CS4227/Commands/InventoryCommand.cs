@@ -1,29 +1,27 @@
-﻿using System;
+﻿using CS4227.Constructs;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using CS4227.Constructs;
-
 
 namespace CS4227.Commands
 {
-    class MoveLeft : Command
+    class InventoryCommand: Command
     {
         Maze maze;
 
-        public MoveLeft(Maze maze)
+        public InventoryCommand(Maze maze)
         {
             this.maze = maze;
         }
 
         public void execute()
         {
-            maze.movePlayerWest();
+            maze.playerInventory();
         }
-        public void undo() { }
 
         public string getType()
         {
-            return "MoveLeft";
+            return "Inventory";
         }
     }
 }

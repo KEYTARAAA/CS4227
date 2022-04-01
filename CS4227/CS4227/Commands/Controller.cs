@@ -13,6 +13,8 @@ namespace CS4227.Commands
         Command attackCommand;
         Command mapCommand;
         Command instructionsCommand;
+        Command pickUpCommand;
+        Command inventoryCommand;
         Command exitCommand;
         Command emptyCommand;
         Command lastCommand;
@@ -46,6 +48,12 @@ namespace CS4227.Commands
                     instructionsCommand = command;
                     break;
                 case 8:
+                    pickUpCommand = command;
+                    break;
+                case 9:
+                    inventoryCommand = command;
+                    break;
+                case 10:
                     exitCommand = command;
                     break;
             }
@@ -73,6 +81,12 @@ namespace CS4227.Commands
                     break;
                 case "M":
                     mapCommand.execute();
+                    break;
+                case "P":
+                    pickUpCommand.execute();
+                    break;
+                case "I":
+                    inventoryCommand.execute();
                     break;
                 case "?":
                     instructionsCommand.execute();

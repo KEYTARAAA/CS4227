@@ -5,10 +5,10 @@ using System.Text;
 
 namespace CS4227.Commands
 {
-    class Attack : Command
+    class AttackCommand : Command
     {
         Maze maze;
-        public Attack(Maze maze)
+        public AttackCommand(Maze maze)
         {
             this.maze = maze;
         }
