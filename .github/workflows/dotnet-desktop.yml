@@ -57,7 +57,7 @@ jobs:
 
     env:
       Solution_Name: CS4227.sln                         # Replace with your solution name, i.e. MyWpfApp.sln.
-      Wap_Project_Directory: CS4227   # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
+      Wap_Project_Directory: CS4227.   # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
 
     steps:
     - name: Checkout
