@@ -1,12 +1,13 @@
 ﻿using CS4227.Characters.Items;
 using CS4227.Constructs;
+using CS4227.Memento;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CS4227.Characters
 {
-    class Player: Character, Movable
+    class Player: Character, Movable, Originator
     {
         Inventory inventory;
         public Player(string name, int startingRoomRow, int startingRoomCol, int health, int attack) : base(name, startingRoomRow, startingRoomCol, health, attack)
@@ -21,7 +22,7 @@ namespace CS4227.Characters
 
         public void addInventory(Item item)
         {
-            Console.WriteLine("\nYou have piced up " + item.getName());
+            Console.WriteLine("\nYou have picked up " + item.getName());
             inventory.addItem(item);
             StatChangingItem statChangingItem = item as StatChangingItem;
             if (statChangingItem != null)
@@ -67,6 +68,71 @@ namespace CS4227.Characters
         public override string ToString()
         {
             return name + ": Health: " + health + " Attack: " + attack;
+        }
+
+        public IMemento createMemento()
+        {
+            return new PlayerMemento(name, roomRow, roomCol, health, attack, inventory, dead);
+        }
+
+        public void restore(IMemento memento)
+        {
+            PlayerMemento playerMemento = memento as PlayerMemento;
+            this.name = playerMemento.getName();
+            this.roomRow = playerMemento.getRoomRow();
+            this.roomCol = playerMemento.getRoomCol();
+            this.health = playerMemento.getHealth();
+            this.attack = playerMemento.getattack();
+            this.inventory = playerMemento.getInventory();
+            this.dead = playerMemento.getDead();
+        }
+
+        public class PlayerMemento: IMemento
+        {
+            string name;
+            int roomRow, roomCol, health, attack;
+            Inventory inventory;
+            bool dead;
+            public PlayerMemento(string name, int roomRow, int roomCol, int health, int attack, Inventory inventory, bool dead)
+            {
+                this.name = name;
+                this.roomRow = roomRow;
+                this.roomCol = roomCol;
+                this.health = health;
+                this.attack = attack;
+                this.inventory = inventory;
+                this.dead = dead;
+            }
+
+            public string getName()
+            {
+                return name;
+            }
+            public int getRoomRow()
+            {
+                return roomRow;
+            }
+            public int getRoomCol()
+            {
+                return roomCol;
+            }
+            public int getHealth()
+            {
+                return health;
+            }
+            public int getattack()
+            {
+                return attack;
+            }
+            public Inventory getInventory()
+            {
+                return inventory;
+            }
+
+            public bool getDead()
+            {
+                return dead;
+            }
         }
     }
 }

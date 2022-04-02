@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CS4227.Memento
 {
-    interface MementoBroad
+    interface IMemento
     {
     }
 }

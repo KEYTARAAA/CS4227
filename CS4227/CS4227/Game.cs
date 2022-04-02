@@ -45,6 +45,7 @@ namespace CS4227
             Command instructionCommand = new InstructionsCommand();
             Command pickUpCommand = new PickUpCommand(maze);
             Command inventoryCommand = new InventoryCommand(maze);
+            Command undoCommand = new UndoCommand(maze);
             Command exitCommand = new ExitCommand();
             controller.setCommand(emptyCommand, 0);
             controller.setCommand(moveWestCommand, 1);
@@ -56,7 +57,8 @@ namespace CS4227
             controller.setCommand(instructionCommand, 7);
             controller.setCommand(pickUpCommand, 8);
             controller.setCommand(inventoryCommand, 9);
-            controller.setCommand(exitCommand, 10);
+            controller.setCommand(undoCommand, 10);
+            controller.setCommand(exitCommand, 11);
 
 
         }
@@ -122,7 +124,6 @@ namespace CS4227
             string[] inputs = input.Split(' ');
 
             controller.keyPressed(inputs[0]);
-            maze.moveEnemies();
             game_event();
 
             return true;
