@@ -18,7 +18,7 @@ namespace CS4227
 {
     class Game
     {
-        //Maze maze;
+        Maze maze;
         List<Dispatcher> dispatchers;
         Controller controller;
         int count = 0;
