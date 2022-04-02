@@ -65,26 +65,19 @@ namespace CS4227.Constructs
             printMaze();
 
             Director director = new Director();
-            BearEnemyBuilder builder = new BearEnemyBuilder(iRoom);
+            BearEnemyBuilder builder = new BearEnemyBuilder();
+
             director.setBuilder(builder);
+
             director.makeBlindBearEnemy();
             BearEnemy bear1 = builder.getResult();
-            bear1.accept(difficulty);
-            enemies.Add(bear1);
-            iRoom.addEnemyToRoom(bear1);
-
+            makeEnemy(bear1);
             builder.reset();
+
             director.makeNormalBearEnemy();
             BearEnemy bear2 = builder.getResult();
-            bear2.accept(difficulty);
-            enemies.Add(bear2);
-            iRoom.addEnemyToRoom(bear2);
-
-
-            makeEnemy(bear1);
             makeEnemy(bear2);
-            //makeEnemy(new SnakeEnemy("Wriggles", 1, 1, 5, 30, "HISSSSSS", new NormalMove()));
-
+            builder.reset();
 
 
             makeItem(new Item("Key"));
@@ -445,8 +438,6 @@ namespace CS4227.Constructs
             moveEnemies();
         }
 
-
-
         public void moveEnemies()
         {
             foreach (Enemy enemy in enemies)
@@ -458,6 +449,7 @@ namespace CS4227.Constructs
             }
             enemiesAttack();
         }
+
         public void enemiesAttack()
         {
             foreach (Enemy enemy in enemies)
@@ -470,6 +462,7 @@ namespace CS4227.Constructs
                 }
             }
         }
+
         public void playerAttack()
         {
             makeMementos();
@@ -487,6 +480,7 @@ namespace CS4227.Constructs
         {
             player.printInventory();
         }
+
         public void playerPickUp()
         {
             makeMementos();

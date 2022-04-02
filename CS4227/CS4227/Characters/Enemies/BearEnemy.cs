@@ -9,55 +9,17 @@ using CS4227.Visitor;
 
 namespace CS4227.Characters.Enemies
 {
-    class BearEnemy: IEnemy, Visitable
+    class BearEnemy: Enemy, Visitable
     {
-        public BearEnemy(string name, int startingRoomRow, int startingRoomCol, int health, int attack, string sound, MovementInterface movementType) : base(name, startingRoomRow, startingRoomCol, health, attack, sound, movementType)
-        {
-            this.movementType = movementType;
-            this.name = name;
-            this.room = room;
-        }
-
         public BearEnemy()
         {
+               this.type = "BEAR";
         }
 
-        public void attack() { }
-        public void move()
-        {
-            MazeRoom newRoom = movementType.move(room);
-            newRoom.addEnemyToRoom(this);
-            this.room.removeEnemyFromRoom(this);
-            this.room = newRoom;
-        }
         public override void accept(VisitorInterface visitor)
         {
             visitor.visit(this);
         }
 
-        public double getHealth()
-        {
-            return this.health;
-        }
-
-        public void setHealth(double health)
-        {
-            this.health = health;
-        }
-
-        public void setMovementType(MovementInterface movementType)
-        {
-            this.movementType = movementType;
-        }
-
-        public void setRoom(MazeRoom room)
-        {
-            this.room = room;
-        }
-
-        public void setName(String name)
-        {
-            this.name = name;
-        }
     }
 }

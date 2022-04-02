@@ -9,17 +9,14 @@ namespace CS4227.Builder
     class BearEnemyBuilder : IBuilder
     {
         private BearEnemy enemy;
-        private MazeRoom room;
         
-        public BearEnemyBuilder(MazeRoom room)
+        public BearEnemyBuilder()
         {
-            this.room = room;
             reset();
         }
 
         public void reset() {
             this.enemy = new BearEnemy();
-            enemy.setRoom(room);
         }
 
         public void setName(String name) {
@@ -30,8 +27,23 @@ namespace CS4227.Builder
             enemy.setMovementType(movementType);
         }
 
-        public void setRoom(MazeRoom room) {
-            enemy.setRoom(room);
+        public void setRoom(int roomRow, int roomCol) {
+            enemy.setRoom(roomRow, roomCol);
+        }
+
+        public void setHealth(int health)
+        {
+            enemy.setHealth(health);
+        }
+
+        public void setAttack(int attack)
+        {
+            enemy.setAttack(attack);
+        }
+
+        public void setSound(string sound)
+        {
+            enemy.setSound("Roar");
         }
 
         public BearEnemy getResult()

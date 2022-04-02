@@ -11,49 +11,14 @@ namespace CS4227.Characters.Enemies
     class SnakeEnemy : Enemy
     {
 
-        MovementInterface movementType;
-        string name;
-        MazeRoom room;
-        double health = 100;
-        public SnakeEnemy(MovementInterface movementType, string name, MazeRoom room)
+        public SnakeEnemy()
         {
-            this.movementType = movementType;
-            this.name = name;
-            this.room = room;
-            room.addEnemyToRoom(this);
-
+            this.type = "SNAKE";
         }
 
-        public void attack() { }
-        public void move()
-        {
-            MazeRoom newRoom = movementType.move(room);
-            newRoom.addEnemyToRoom(this);
-            this.room.removeEnemyFromRoom(this);
-            this.room = newRoom;
-        }
-        public string roar()
-        {
-            return "HISSSSSSSSSSSSSSSSS!";
-        }
-        public MazeRoom getRoom()
-        {
-            return this.room;
-        }
-
-        public void accept(VisitorInterface visitor)
+        public override void accept(VisitorInterface visitor)
         {
             visitor.visit(this);
-        }
-
-        public double getHealth()
-        {
-            return this.health;
-        }
-
-        public void setHealth(double health)
-        {
-            this.health = health;
         }
     }
 }
