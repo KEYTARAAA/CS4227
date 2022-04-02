@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CS4227.Characters.Items;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -45,6 +46,44 @@ namespace CS4227.Characters
                 }
             }
             return false;
+        }
+
+        public void printInventory()
+        {
+            Console.WriteLine("\nInventory:");
+            foreach (Item i in inventory)
+            {
+                Console.Write(i.getName());
+
+                StatChangingItem statChangingItem = i as StatChangingItem;
+                if (statChangingItem != null)
+                {
+                    printStats(statChangingItem.getStats());
+                }
+
+                Console.Write("\n");
+            }
+        }
+
+        void printStats(Dictionary<STAT, int> stats)
+        {
+            Console.Write(":");
+            foreach (KeyValuePair<STAT, int> entry in stats)
+            {
+                STAT stat = entry.Key;
+                int change = entry.Value;
+                string sign;
+
+                if (change < 0)
+                {
+                    sign = "-";
+                }
+                else
+                {
+                    sign = "+";
+                }
+                Console.Write(" " + stat.ToString() + " " + sign + change + " ");
+            }
         }
     }
 }

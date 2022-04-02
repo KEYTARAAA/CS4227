@@ -1,11 +1,13 @@
-﻿using CS4227.Constructs;
+﻿using CS4227.Characters.Items;
+using CS4227.Constructs;
+using CS4227.Memento;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CS4227.Characters
 {
-    class Player: Character, Movable
+    class Player: Character, Movable, Originator
     {
         Inventory inventory;
         public Player(string name, int startingRoomRow, int startingRoomCol, int health, int attack) : base(name, startingRoomRow, startingRoomCol, health, attack)
@@ -15,50 +17,122 @@ namespace CS4227.Characters
 
         public override void die()
         {
-
+            Console.WriteLine("\nYou have died.\n\nGAME OVER.");
         }
 
-        public void move(Direction direction)
+        public void addInventory(Item item)
         {
-            switch (direction)
+            Console.WriteLine("\nYou have picked up " + item.getName());
+            inventory.addItem(item);
+            StatChangingItem statChangingItem = item as StatChangingItem;
+            if (statChangingItem != null)
             {
-                case Direction.NORTH:
-                    roomRow -= 1;
-                    break;
-                case Direction.SOUTH:
-                    roomRow += 1;
-                    break;
-                case Direction.EAST:
-                    roomCol -= 1;
-                    break;
-                case Direction.WEST:
-                    roomCol += 1;
-                    break;
+                applyStats(statChangingItem.getStats());
             }
         }
 
-        public void moveLeft()
+        private void applyStats(Dictionary<STAT, int> stats)
         {
-            this.roomCol = this.roomCol - 1;
-            Console.WriteLine("Moving Left");
+            foreach (KeyValuePair<STAT,int> entry in stats)
+            {
+                STAT stat = entry.Key;
+                int change = entry.Value;
+                string sign;
+
+                if (change < 0)
+                {
+                    sign = "-";
+                }
+                else
+                {
+                    sign = "+";
+                }
+
+                switch (stat)
+                {
+                    case STAT.ATTACK:
+                        this.attack += change;
+                        break;
+                    case STAT.HEALTH:
+                        this.health += change;
+                        break;
+                }
+                Console.WriteLine("\n" + stat.ToString() + " " + sign+change);
+            }
         }
 
-        public void moveRight()
+        public void printInventory()
         {
-            this.roomCol = this.roomCol + 1;
-            Console.WriteLine("Moving Right");
+            inventory.printInventory();
         }
-        public void moveUp()
+        public override string ToString()
         {
-            this.roomRow = this.roomRow + 1;
-            Console.WriteLine("Moving Up");
+            return name + ": Health: " + health + " Attack: " + attack;
         }
 
-        public void moveDown()
+        public IMemento createMemento()
         {
-            this.roomRow = this.roomRow - 1;
-            Console.WriteLine("Moving Down");
+            return new PlayerMemento(name, roomRow, roomCol, health, attack, inventory, dead);
         }
 
+        public void restore(IMemento memento)
+        {
+            PlayerMemento playerMemento = memento as PlayerMemento;
+            this.name = playerMemento.getName();
+            this.roomRow = playerMemento.getRoomRow();
+            this.roomCol = playerMemento.getRoomCol();
+            this.health = playerMemento.getHealth();
+            this.attack = playerMemento.getattack();
+            this.inventory = playerMemento.getInventory();
+            this.dead = playerMemento.getDead();
+        }
+
+        public class PlayerMemento: IMemento
+        {
+            string name;
+            int roomRow, roomCol, health, attack;
+            Inventory inventory;
+            bool dead;
+            public PlayerMemento(string name, int roomRow, int roomCol, int health, int attack, Inventory inventory, bool dead)
+            {
+                this.name = name;
+                this.roomRow = roomRow;
+                this.roomCol = roomCol;
+                this.health = health;
+                this.attack = attack;
+                this.inventory = inventory;
+                this.dead = dead;
+            }
+
+            public string getName()
+            {
+                return name;
+            }
+            public int getRoomRow()
+            {
+                return roomRow;
+            }
+            public int getRoomCol()
+            {
+                return roomCol;
+            }
+            public int getHealth()
+            {
+                return health;
+            }
+            public int getattack()
+            {
+                return attack;
+            }
+            public Inventory getInventory()
+            {
+                return inventory;
+            }
+
+            public bool getDead()
+            {
+                return dead;
+            }
+        }
     }
 }

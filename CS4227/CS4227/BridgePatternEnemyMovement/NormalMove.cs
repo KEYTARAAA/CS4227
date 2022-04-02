@@ -8,10 +8,10 @@ namespace CS4227.BridgePatternEnemyMovement
     class NormalMove : MovementInterface
     {
 
-        public MazeRoom move(MazeRoom room)
+        public Direction move(List<Direction> exits)
         {
             Random rnd = new Random();
-            List<MazeRoom> validExits = new List<MazeRoom>();
+            /*List<MazeRoom> validExits = new List<MazeRoom>();
             Dictionary<string, MazeRoom> exits = room.getExits();
             foreach (KeyValuePair<string, MazeRoom> entry in exits)
             {
@@ -21,13 +21,8 @@ namespace CS4227.BridgePatternEnemyMovement
                 }
             }
 
-            int index = rnd.Next(validExits.Count);
-            return validExits[index];
-
-
-
-
-
+            int index = rnd.Next(validExits.Count);*/
+            return exits[rnd.Next(exits.Count)];
         }
     }
 }

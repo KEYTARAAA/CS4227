@@ -8,7 +8,7 @@ namespace CS4227
         {
             
             Game game = new Game();
-            game.start();
+            game.loop();
         }
     }
 }

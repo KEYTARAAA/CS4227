@@ -10,13 +10,13 @@ namespace CS4227.Visitor
 
         public void visit(BearEnemy bearEnemy)
         {
-            bearEnemy.setHealth(bearEnemy.getHealth() * .75);
+            bearEnemy.setHealth((int)(bearEnemy.getHealth() * .75));
             
         }
 
         public void visit(SnakeEnemy snakeEnemy)
         {
-            snakeEnemy.setHealth(snakeEnemy.getHealth() * .75);
+            snakeEnemy.setHealth((int)(snakeEnemy.getHealth() * .75));
         }
     }
 }

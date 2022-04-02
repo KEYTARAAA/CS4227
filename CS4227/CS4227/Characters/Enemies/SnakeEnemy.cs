@@ -8,7 +8,7 @@ using CS4227.Visitor;
 
 namespace CS4227.Characters.Enemies
 {
-    class SnakeEnemy : IEnemy
+    class SnakeEnemy : Enemy
     {
 
         MovementInterface movementType;

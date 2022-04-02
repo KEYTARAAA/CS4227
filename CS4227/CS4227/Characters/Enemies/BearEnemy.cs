@@ -11,11 +11,7 @@ namespace CS4227.Characters.Enemies
 {
     class BearEnemy: IEnemy, Visitable
     {
-        MovementInterface movementType;
-        string name;
-        MazeRoom room;
-        double health = 100;
-        public BearEnemy(MovementInterface movementType, string name, MazeRoom room)
+        public BearEnemy(string name, int startingRoomRow, int startingRoomCol, int health, int attack, string sound, MovementInterface movementType) : base(name, startingRoomRow, startingRoomCol, health, attack, sound, movementType)
         {
             this.movementType = movementType;
             this.name = name;
@@ -34,18 +30,7 @@ namespace CS4227.Characters.Enemies
             this.room.removeEnemyFromRoom(this);
             this.room = newRoom;
         }
-
-        public string roar()
-        {
-           return "ROARRRRRRRR";
-        }
-
-        public MazeRoom getRoom()
-        {
-            return this.room;
-        }
-
-        public void accept(VisitorInterface visitor)
+        public override void accept(VisitorInterface visitor)
         {
             visitor.visit(this);
         }

@@ -9,7 +9,7 @@ namespace CS4227.BridgePatternEnemyMovement
     interface MovementInterface
     {
 
-        public MazeRoom move(MazeRoom room) { return room; }
+        public Direction move(List<Direction> exits);
     }
 
     
