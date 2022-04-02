@@ -7,10 +7,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using CS4227.Characters.Items;
+using CS4227.Memento;
 
 namespace CS4227.Constructs
 {
-    class Maze
+    class Maze : Caretaker
     {
         Player player;
         Room[,] rooms;
@@ -19,12 +20,25 @@ namespace CS4227.Constructs
         List<Item> items;
         MazeRoom currentRoom;
         Dictionary<string, MazeRoom> currentExits;
+
+        List<IMemento> playerMementos;
+        List<List<IMemento>> enemyMementos;
+        List<List<IMemento>> itemMementos;
+
+
+        VisitorInterface difficulty;
+
+        int undos = 5;
         public Maze()
         {
             player = new Player("Player", 0, 0, 100, 10);
             rooms = new Room[3,3];
             enemies = new List<Enemy>();
             items = new List<Item>();
+            enemies = new List<Enemy>();
+            playerMementos = new List<IMemento>();
+            enemyMementos = new List<List<IMemento>>();
+            itemMementos = new List<List<IMemento>>();
             rnd = new Random();
 
             genRooms();
@@ -38,7 +52,6 @@ namespace CS4227.Constructs
                 input = Console.ReadLine().ToUpper();
                 inputs = input.Split(' ');
             }
-            VisitorInterface difficulty;
             if(inputs[0] == "E")
             {
                 difficulty = new EasyMode();
@@ -50,20 +63,24 @@ namespace CS4227.Constructs
 
             printMaze();
 
-            ClockwiseMove moveType = new ClockwiseMove();
-            BearEnemy george = new BearEnemy( "George", 2, 2, 50, 2,"ROARRRRR", moveType);
-            george.accept(difficulty);
-            enemies.Add(george);
-            NormalMove moveType2 = new NormalMove();
-            SnakeEnemy wriggles = new SnakeEnemy("Wriggles", 1, 1, 5, 30,"HISSSSSS", moveType2);
-            wriggles.accept(difficulty);
-            enemies.Add(wriggles);
+            makeEnemy(new BearEnemy( "George", 2, 2, 50, 2,"ROARRRRR", new ClockwiseMove()));
+            makeEnemy(new SnakeEnemy("Wriggles", 1, 1, 5, 30, "HISSSSSS", new NormalMove()));
 
-            Item key = new Item("Key");
-            StatChangingItem sword = new StatChangingItem("Sword", (new Dictionary<STAT, int>() {[STAT.ATTACK] = 10 }));
-            items.Add(key);
-            items.Add(sword);
+            makeItem(new Item("Key"));
+            makeItem(new StatChangingItem("Sword", (new Dictionary<STAT, int>() { [STAT.ATTACK] = 10 })));
             placeItems();
+        }
+
+        private void makeEnemy(Enemy e)
+        {
+            e.accept(difficulty);
+            enemies.Add(e);
+            enemyMementos.Add(new List<IMemento>());
+        }
+        private void makeItem(Item i)
+        {
+            items.Add(i);
+            itemMementos.Add(new List<IMemento>());
         }
 
         private void genRooms()
@@ -367,42 +384,44 @@ namespace CS4227.Constructs
                 item.setRoom(rnd.Next(rooms.GetLength(0)), rnd.Next(rooms.GetLength(0)));
             }
         }
-
-        public void moveAll()
-        {
-
-        }
-
         public void movePlayerSouth()
         {
+            makeMementos();
             if (roomExists(Direction.SOUTH, rooms[player.getRoomRow(), player.getRoomCol()]))
             {
                 player.move(Direction.SOUTH);
             }
+            moveEnemies();
         }
 
         public void movePlayerNorth()
         {
+            makeMementos();
             if (roomExists(Direction.NORTH, rooms[player.getRoomRow(), player.getRoomCol()]))
             {
                 player.move(Direction.NORTH);
             }
+            moveEnemies();
         }
 
         public void movePlayerEast()
         {
+            makeMementos();
             if (roomExists(Direction.EAST, rooms[player.getRoomRow(), player.getRoomCol()]))
             {
                 player.move(Direction.EAST);
             }
+            moveEnemies();
         }
 
         public void movePlayerWest()
         {
+            makeMementos();
             if (roomExists(Direction.WEST, rooms[player.getRoomRow(), player.getRoomCol()]))
             {
                 player.move(Direction.WEST);
             }
+            moveEnemies();
         }
 
 
@@ -432,6 +451,7 @@ namespace CS4227.Constructs
         }
         public void playerAttack()
         {
+            makeMementos();
             foreach (Enemy enemy in enemies)
             {
                 if (((enemy.getRoomRow() == player.getRoomRow()) && (enemy.getRoomCol() == player.getRoomCol())))
@@ -439,6 +459,7 @@ namespace CS4227.Constructs
                     player.attackOther(enemy);
                 }
             }
+            moveEnemies();
         }
 
         public void playerInventory()
@@ -447,20 +468,16 @@ namespace CS4227.Constructs
         }
         public void playerPickUp()
         {
-            List<Item> toRemove = new List<Item>();
+            makeMementos();
             foreach (Item item in items)
             {
-                if (rooms[item.getRoomRow(), item.getRoomCol()] == getCurrentRoom())
+                if (rooms[item.getRoomRow(), item.getRoomCol()] == getCurrentRoom() && item.getActive())
                 {
                     player.addInventory(item);
-                    toRemove.Add(item);
+                    item.setActive(false);
                 }
             }
-
-            foreach (Item item in toRemove)
-            {
-                items.Remove(item);
-            }
+            moveEnemies();
         }
 
         public void setRoom(MazeRoom room)
@@ -472,22 +489,16 @@ namespace CS4227.Constructs
         {
             return this.enemies;
         }
-
-
-
-        
-
        
 
         public void refresh()
         {
-
             Console.WriteLine("\n" + getCurrentRoom().getLongDescription());
             Console.WriteLine(player.ToString());
             bool first = true;
             foreach (Item i in items)
             {
-                if (rooms[i.getRoomRow(), i.getRoomCol()] == getCurrentRoom())
+                if (rooms[i.getRoomRow(), i.getRoomCol()] == getCurrentRoom() && i.getActive())
                 {
                     if (first)
                     {
@@ -529,5 +540,56 @@ namespace CS4227.Constructs
             return full;
         }
 
+        public void makeMementos()
+        {
+            mementoObject(player, playerMementos);
+
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                mementoObject(enemies[i], enemyMementos[i]);
+            }
+            for (int i = 0; i < items.Count; i++)
+            {
+                mementoObject(items[i], itemMementos[i]);
+            }
+        }
+        void mementoObject(Originator o, List<IMemento> mementos)
+        {
+            while (mementos.Count >= undos)
+            {
+                mementos.RemoveAt(0);
+            }
+            mementos.Add(o.createMemento());
+        }
+
+        public void undo()
+        {
+            if (playerMementos.Count <= undos)
+            {
+                undoObject(player, playerMementos);
+
+                for (int i = 0; i < enemies.Count; i++)
+                {
+                    undoObject(enemies[i], enemyMementos[i]);
+                }
+                for (int i = 0; i < items.Count; i++)
+                {
+                    undoObject(items[i], itemMementos[i]);
+                }
+            }
+            else
+            {
+                Console.WriteLine("\nNo undos left!");
+            }
+        }
+
+        void undoObject(Originator o, List<IMemento> mementos)
+        {
+            if (mementos.Count > 0)
+            {
+                o.restore(mementos[mementos.Count-1]);
+                mementos.Remove(mementos[mementos.Count - 1]);
+            }
+        }
     }
 }

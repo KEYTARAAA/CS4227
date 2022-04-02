@@ -6,6 +6,8 @@ namespace CS4227.Memento
 {
     interface Originator
     {
-        public void createMemento();
+        public IMemento createMemento();
+
+        public void restore(IMemento memento);
     }
 }

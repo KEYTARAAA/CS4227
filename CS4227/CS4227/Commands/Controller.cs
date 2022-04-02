@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CS4227.Constructs;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,9 +16,11 @@ namespace CS4227.Commands
         Command instructionsCommand;
         Command pickUpCommand;
         Command inventoryCommand;
+        Command undoCommand;
         Command exitCommand;
         Command emptyCommand;
         Command lastCommand;
+
         public void setCommand(Command command, int i)
         {
 
@@ -54,6 +57,9 @@ namespace CS4227.Commands
                     inventoryCommand = command;
                     break;
                 case 10:
+                    undoCommand = command;
+                    break;
+                case 11:
                     exitCommand = command;
                     break;
             }
@@ -87,6 +93,9 @@ namespace CS4227.Commands
                     break;
                 case "I":
                     inventoryCommand.execute();
+                    break;
+                case "U":
+                    undoCommand.execute();
                     break;
                 case "?":
                     instructionsCommand.execute();
