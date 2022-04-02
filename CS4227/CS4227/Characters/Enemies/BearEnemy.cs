@@ -9,17 +9,15 @@ using CS4227.Visitor;
 
 namespace CS4227.Characters.Enemies
 {
-    class BearEnemy: Enemy, Visitable
+    class BearEnemy: Enemy
     {
         public BearEnemy(string name, int startingRoomRow, int startingRoomCol, int health, int attack, string sound, MovementInterface movementType) : base(name, startingRoomRow, startingRoomCol, health, attack, sound, movementType)
         {
             this.type = "BEAR";
         }
-
-        public void accept(VisitorInterface visitor)
+        public override void accept(VisitorInterface visitor)
         {
             visitor.visit(this);
         }
-
     }
 }

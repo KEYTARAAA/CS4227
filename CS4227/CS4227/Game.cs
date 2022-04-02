@@ -35,16 +35,30 @@ namespace CS4227
             //db.createFile("sean");
 
             controller = new Controller();
-            Command moveDown = new MoveDown(maze);
-            Command moveUp = new MoveUp(maze);
-            Command moveLeft = new MoveLeft(maze);
-            Command moveRight = new MoveRight(maze);
-            Command attackCommand = new Attack(maze);
-            controller.setCommand(moveLeft, 1);
-            controller.setCommand(moveRight, 2);
-            controller.setCommand(moveUp, 3);
-            controller.setCommand(moveDown, 4);
+            Command emptyCommand = new EmptyCommand();
+            Command moveSouthCommand = new MoveSouthCommand(maze);
+            Command moveNorthCommand = new MoveNorthCommand(maze);
+            Command moveWestCommand = new MoveWestCommand(maze);
+            Command moveEastCommand = new MoveEastCommand(maze);
+            Command attackCommand = new AttackCommand(maze);
+            Command mapCommand = new MapCommand(maze);
+            Command instructionCommand = new InstructionsCommand();
+            Command pickUpCommand = new PickUpCommand(maze);
+            Command inventoryCommand = new InventoryCommand(maze);
+            Command undoCommand = new UndoCommand(maze);
+            Command exitCommand = new ExitCommand();
+            controller.setCommand(emptyCommand, 0);
+            controller.setCommand(moveWestCommand, 1);
+            controller.setCommand(moveEastCommand, 2);
+            controller.setCommand(moveNorthCommand, 3);
+            controller.setCommand(moveSouthCommand, 4);
             controller.setCommand(attackCommand, 5);
+            controller.setCommand(mapCommand, 6);
+            controller.setCommand(instructionCommand, 7);
+            controller.setCommand(pickUpCommand, 8);
+            controller.setCommand(inventoryCommand, 9);
+            controller.setCommand(undoCommand, 10);
+            controller.setCommand(exitCommand, 11);
 
 
         }
@@ -104,17 +118,12 @@ namespace CS4227
             }
         }
 
-        private Boolean terminalInputReciever()
+        private bool terminalInputReciever()
         {
             string input = Console.ReadLine().ToUpper();
             string[] inputs = input.Split(' ');
-            if (inputs[0] == "EXIT")
-            {
-                return false;
-            }
 
             controller.keyPressed(inputs[0]);
-            maze.moveEnemies();
             game_event();
 
             return true;

@@ -1,30 +1,27 @@
-﻿using System;
+﻿using CS4227.Constructs;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using CS4227.Constructs;
-
 
 namespace CS4227.Commands
 {
-    class MoveRight : Command
+    class UndoCommand: Command
     {
         Maze maze;
 
-        public MoveRight(Maze maze)
+        public UndoCommand(Maze maze)
         {
             this.maze = maze;
         }
 
         public void execute()
         {
-            maze.movePlayerEast();
+            maze.undo();
         }
-
-        public void undo() { }
 
         public string getType()
         {
-            return "MoveRight";
+            return "Undo";
         }
     }
 }

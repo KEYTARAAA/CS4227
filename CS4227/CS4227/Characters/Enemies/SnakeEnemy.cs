@@ -15,10 +15,9 @@ namespace CS4227.Characters.Enemies
             this.type = "SNAKE";
         }
 
-        public void accept(VisitorInterface visitor)
+        public override void accept(VisitorInterface visitor)
         {
             visitor.visit(this);
         }
-
     }
 }

@@ -6,6 +6,6 @@ namespace CS4227.Memento
 {
     interface Caretaker
     {
-
+        public void undo();
     }
 }
