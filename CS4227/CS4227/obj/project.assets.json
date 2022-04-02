@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ronal\\Source\\Repos\\CS4227\\CS4227\\CS4227\\CS4227.csproj",
+      "projectUniqueName": "C:\\Users\\ronal\\source\\repos\\CS4227\\CS4227_2\\CS4227\\CS4227\\CS4227.csproj",
       "projectName": "CS4227",
-      "projectPath": "C:\\Users\\ronal\\Source\\Repos\\CS4227\\CS4227\\CS4227\\CS4227.csproj",
+      "projectPath": "C:\\Users\\ronal\\source\\repos\\CS4227\\CS4227_2\\CS4227\\CS4227\\CS4227.csproj",
       "packagesPath": "C:\\Users\\ronal\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ronal\\Source\\Repos\\CS4227\\CS4227\\CS4227\\obj\\",
+      "outputPath": "C:\\Users\\ronal\\source\\repos\\CS4227\\CS4227_2\\CS4227\\CS4227\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\ronal\\AppData\\Roaming\\NuGet\\NuGet.Config",
