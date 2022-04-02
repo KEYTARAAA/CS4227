@@ -65,20 +65,34 @@ namespace CS4227.Constructs
             printMaze();
 
             Director director = new Director();
-            BearEnemyBuilder builder = new BearEnemyBuilder();
+            BearEnemyBuilder bearBuilder = new BearEnemyBuilder();
 
-            director.setBuilder(builder);
+            director.setBuilder(bearBuilder);
 
             director.makeBlindBearEnemy();
-            BearEnemy bear1 = builder.getResult();
+            BearEnemy bear1 = bearBuilder.getResult();
             makeEnemy(bear1);
-            builder.reset();
+            bearBuilder.reset();
 
             director.makeNormalBearEnemy();
-            BearEnemy bear2 = builder.getResult();
+            BearEnemy bear2 = bearBuilder.getResult();
             makeEnemy(bear2);
-            builder.reset();
+            bearBuilder.reset();
 
+            SnakeEnemyBuilder snakeBuilder = new SnakeEnemyBuilder();
+            snakeBuilder = new SnakeEnemyBuilder();
+
+            director.setBuilder(snakeBuilder);
+
+            director.makeNormalSnakeEnemy();
+            SnakeEnemy snake = snakeBuilder.getResult();
+            makeEnemy(snake);
+            snakeBuilder.reset();
+
+            director.makeBlindSnakeEnemy();
+            SnakeEnemy snake2 = snakeBuilder.getResult();
+            makeEnemy(snake2);
+            snakeBuilder.reset();
 
             makeItem(new Item("Key"));
             makeItem(new StatChangingItem("Sword", (new Dictionary<STAT, int>() { [STAT.ATTACK] = 10 })));

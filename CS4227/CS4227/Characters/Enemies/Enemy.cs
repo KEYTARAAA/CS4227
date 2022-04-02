@@ -31,6 +31,7 @@ namespace CS4227.Characters.Enemies
         {
             Console.WriteLine(sound);
         }
+
         public string getType()
         {
             return type;
@@ -39,13 +40,14 @@ namespace CS4227.Characters.Enemies
         override
         public string ToString()
         {
-            return type + " " + name + ": Health: " + health + " Attack: " + attack;
+            return name + ": Health: " + health + " Attack: " + attack;
         }
+
         override
         public void die()
         {
             dead = true;
-            Console.WriteLine("You have defeated " + type + " "+ name);
+            Console.WriteLine("You have defeated " + name);
         }
         abstract public void accept(VisitorInterface visitor);
 
