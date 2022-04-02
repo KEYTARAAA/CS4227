@@ -217,3 +217,13 @@ These are the game logs for actions taken and resultant game state
 90,Bear,22,Bear,22,1
 90,Bear,22,Bear,22,2
 80,Bear,22,Bear,22,3
+95,Bear,22,Bear,22,0
+85,Bear,12,Bear,22,1
+75,Bear,2,Bear,12,2
+70,Bear,-8,Bear,2,3
+70,Bear,-18,Bear,-8,4
+70,Bear,-28,Bear,-18,5
+70,Bear,-38,Bear,-28,6
+70,Bear,-38,Bear,-28,7
+70,Bear,-38,Bear,-28,8
+70,Bear,-38,Bear,-28,9
