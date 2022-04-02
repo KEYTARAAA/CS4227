@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using CS4227.Characters.Items;
 using CS4227.Memento;
+using CS4227.Builder;
 
 namespace CS4227.Constructs
 {
@@ -63,8 +64,21 @@ namespace CS4227.Constructs
 
             printMaze();
 
-            makeEnemy(new BearEnemy( "George", 2, 2, 50, 2,"ROARRRRR", new ClockwiseMove()));
-            makeEnemy(new SnakeEnemy("Wriggles", 1, 1, 5, 30, "HISSSSSS", new NormalMove()));
+            Director director = new Director();
+            BearEnemyBuilder builder = new BearEnemyBuilder();
+
+            director.setBuilder(builder);
+
+            director.makeBlindBearEnemy();
+            BearEnemy bear1 = builder.getResult();
+            makeEnemy(bear1);
+            builder.reset();
+
+            director.makeNormalBearEnemy();
+            BearEnemy bear2 = builder.getResult();
+            makeEnemy(bear2);
+            builder.reset();
+
 
             makeItem(new Item("Key"));
             makeItem(new StatChangingItem("Sword", (new Dictionary<STAT, int>() { [STAT.ATTACK] = 10 })));
@@ -424,8 +438,6 @@ namespace CS4227.Constructs
             moveEnemies();
         }
 
-
-
         public void moveEnemies()
         {
             foreach (Enemy enemy in enemies)
@@ -437,6 +449,7 @@ namespace CS4227.Constructs
             }
             enemiesAttack();
         }
+
         public void enemiesAttack()
         {
             foreach (Enemy enemy in enemies)
@@ -449,6 +462,7 @@ namespace CS4227.Constructs
                 }
             }
         }
+
         public void playerAttack()
         {
             makeMementos();
@@ -466,6 +480,7 @@ namespace CS4227.Constructs
         {
             player.printInventory();
         }
+
         public void playerPickUp()
         {
             makeMementos();

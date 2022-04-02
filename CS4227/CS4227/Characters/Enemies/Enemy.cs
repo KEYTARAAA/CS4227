@@ -17,6 +17,11 @@ namespace CS4227.Characters.Enemies
             this.movementType = movementType;
         }
 
+        public Enemy() : base()
+        {
+
+        }
+
         public void move(List<Direction> exits)
         {
             move(movementType.move(exits));
@@ -64,6 +69,16 @@ namespace CS4227.Characters.Enemies
                 this.sound = enemyMemento.getSound();
                 this.dead = enemyMemento.getDead();
             }
+        }
+
+        public void setMovementType(MovementInterface movementType)
+        {
+            this.movementType = movementType;
+        }
+
+        public void setSound(string sound)
+        {
+            this.sound = sound;
         }
 
 

@@ -3,11 +3,8 @@ using CS4227.Characters.Enemies;
 using CS4227.Constructs;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using CS4227.Interceptors;
 using CS4227.ContextObjects;
-
-using CS4227.Characters.Enemies;
 
 using CS4227.Characters;
 

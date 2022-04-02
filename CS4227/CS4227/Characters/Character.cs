@@ -19,6 +19,16 @@ namespace CS4227.Characters
             this.attack = attack;
         }
 
+        public Character()
+        {
+            // is it needed to be set? or can it be left default null
+            this.name = "";
+            roomRow = 1;
+            roomCol = 1;
+            this.health = 1;
+            this.attack = 1;
+        }
+
         public string getName()
         {
             return name;
@@ -84,6 +94,17 @@ namespace CS4227.Characters
         public void setDead(bool dead)
         {
             this.dead = dead;
+        }
+
+        public void setName(string name)
+        {
+            this.name = name;
+        }
+
+        public void setRoom(int roomRow, int roomCol)
+        {
+            this.roomRow = roomRow;
+            this.roomCol = roomCol;
         }
 
         override
