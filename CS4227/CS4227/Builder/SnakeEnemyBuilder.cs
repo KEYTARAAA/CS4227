@@ -6,28 +6,32 @@ using System.Text;
 
 namespace CS4227.Builder
 {
-    class BearEnemyBuilder : IBuilder
+    class SnakeEnemyBuilder : IBuilder
     {
-        private BearEnemy enemy;
-        
-        public BearEnemyBuilder()
+        private SnakeEnemy enemy;
+
+        public SnakeEnemyBuilder()
         {
             reset();
         }
 
-        public void reset() {
-            this.enemy = new BearEnemy();
+        public void reset()
+        {
+            this.enemy = new SnakeEnemy();
         }
 
-        public void setName(String name) {
+        public void setName(String name)
+        {
             enemy.setName(name);
         }
 
-        public void setMovementType(MovementInterface movementType) {
+        public void setMovementType(MovementInterface movementType)
+        {
             enemy.setMovementType(movementType);
         }
 
-        public void setRoom(int roomRow, int roomCol) {
+        public void setRoom(int roomRow, int roomCol)
+        {
             enemy.setRoom(roomRow, roomCol);
         }
 
@@ -46,7 +50,7 @@ namespace CS4227.Builder
             enemy.setSound(sound);
         }
 
-        public BearEnemy getResult()
+        public SnakeEnemy getResult()
         {
             return enemy;
         }
