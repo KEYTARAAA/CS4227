@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 using CS4227.Constructs;
-
+using CS4227.Facade;
 
 namespace CS4227.Commands
 {
     class MoveEastCommand : Command
     {
-        Maze maze;
+        MazeFacade maze;
 
-        public MoveEastCommand(Maze maze)
+        public MoveEastCommand(MazeFacade maze)
         {
             this.maze = maze;
         }

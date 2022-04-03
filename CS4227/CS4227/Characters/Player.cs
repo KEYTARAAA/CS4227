@@ -100,8 +100,13 @@ namespace CS4227.Characters
                 this.roomCol = roomCol;
                 this.health = health;
                 this.attack = attack;
-                this.inventory = inventory;
                 this.dead = dead;
+                this.inventory = new Inventory();
+
+                foreach (Item i in inventory.getInventory())
+                {
+                    this.inventory.addItem(i);
+                }
             }
 
             public string getName()

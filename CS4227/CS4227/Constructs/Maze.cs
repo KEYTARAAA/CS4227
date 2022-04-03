@@ -9,18 +9,17 @@ using System.Text;
 using CS4227.Characters.Items;
 using CS4227.Memento;
 using CS4227.Builder;
+using CS4227.Facade;
 
 namespace CS4227.Constructs
 {
-    class Maze : Caretaker
+    class Maze : Caretaker, MazeFacade
     {
         Player player;
         Room[,] rooms;
         Random rnd;
         List<Enemy> enemies;
         List<Item> items;
-        MazeRoom currentRoom;
-        Dictionary<string, MazeRoom> currentExits;
 
         List<IMemento> playerMementos;
         List<List<IMemento>> enemyMementos;
@@ -493,11 +492,6 @@ namespace CS4227.Constructs
                 }
             }
             moveEnemies();
-        }
-
-        public void setRoom(MazeRoom room)
-        {
-            this.currentRoom = room;
         }
 
         public List<Enemy> getEnemies()
