@@ -20,7 +20,7 @@ namespace CS4227.Characters
 
         public override void die()
         {
-            Console.WriteLine("\nYou have died.\n\nGAME OVER.");
+            dead = true;
         }
 
         public void addInventory(Item item)
@@ -62,6 +62,11 @@ namespace CS4227.Characters
                 }
                 Console.WriteLine("\n" + stat.ToString() + " " + sign+change);
             }
+        }
+
+        public bool checkInventory(string itemName)
+        {
+            return inventory.checkInventory(itemName);
         }
 
         public void printInventory()

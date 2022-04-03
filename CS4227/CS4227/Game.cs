@@ -43,6 +43,7 @@ namespace CS4227
             Command pickUpCommand = new PickUpCommand(maze);
             Command inventoryCommand = new InventoryCommand(maze);
             Command undoCommand = new UndoCommand(maze);
+            Command restartCommand = new RestartCommand(maze);
             Command exitCommand = new ExitCommand();
             controller.setCommand(emptyCommand, 0);
             controller.setCommand(moveWestCommand, 1);
@@ -55,7 +56,8 @@ namespace CS4227
             controller.setCommand(pickUpCommand, 8);
             controller.setCommand(inventoryCommand, 9);
             controller.setCommand(undoCommand, 10);
-            controller.setCommand(exitCommand, 11);
+            controller.setCommand(restartCommand, 11);
+            controller.setCommand(exitCommand, 12);
 
 
         }

@@ -74,7 +74,10 @@ namespace CS4227.Characters
             switch (direction)
             {
                 case Direction.NORTH:
-                    roomRow--;
+                    if (roomRow!=0)
+                    {
+                        roomRow--;
+                    }
                     break;
                 case Direction.SOUTH:
                     roomRow++;

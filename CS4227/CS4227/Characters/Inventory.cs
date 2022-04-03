@@ -40,7 +40,7 @@ namespace CS4227.Characters
         {
             foreach (Item i in inventory)
             {
-                if (i.getName() == item)
+                if (i.getName().ToUpper() == item.ToUpper())
                 {
                     return true;
                 }

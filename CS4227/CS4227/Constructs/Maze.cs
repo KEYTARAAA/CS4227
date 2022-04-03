@@ -24,6 +24,7 @@ namespace CS4227.Constructs
         List<IMemento> playerMementos;
         List<List<IMemento>> enemyMementos;
         List<List<IMemento>> itemMementos;
+        bool won, lost;
 
 
         VisitorInterface difficulty;
@@ -31,9 +32,13 @@ namespace CS4227.Constructs
         int undos = 5;
         public Maze()
         {
-            Console.WriteLine("Test");
+            makeMaze();
+        }
+
+        private void makeMaze()
+        {
             player = new Player("Player", 0, 0, 100, 10);
-            rooms = new Room[3,3];
+            rooms = new Room[3, 3];
             enemies = new List<Enemy>();
             items = new List<Item>();
             enemies = new List<Enemy>();
@@ -41,6 +46,8 @@ namespace CS4227.Constructs
             enemyMementos = new List<List<IMemento>>();
             itemMementos = new List<List<IMemento>>();
             rnd = new Random();
+            won = false;
+            lost = false;
 
             genRooms();
 
@@ -279,6 +286,7 @@ namespace CS4227.Constructs
             }
 
             finalCheck();
+            rooms[0, 0].setExit(Direction.NORTH, true);
         }
 
         void finalCheck()
@@ -341,6 +349,10 @@ namespace CS4227.Constructs
             return neighbours;
         }
 
+        public Room[,] getMaze()
+        {
+            return rooms;
+        }
         private void setRandomNeighbour(Room room)
         {
             List<Direction> noExit = new List<Direction>();
@@ -433,7 +445,19 @@ namespace CS4227.Constructs
         public void movePlayerNorth()
         {
             makeMementos();
-            if (rooms[player.getRoomRow(), player.getRoomCol()].getExit(Direction.NORTH))
+            
+            if (getCurrentRoom().getMapName() == "A" && !player.getDead())
+            {
+                if (player.checkInventory("KEY"))
+                {
+                    win();
+                }
+                else
+                {
+                    Console.WriteLine("\nRoom is locked!\nFind Key To open.");
+                }
+            }
+            else if (rooms[player.getRoomRow(), player.getRoomCol()].getExit(Direction.NORTH))
             {
                 player.move(Direction.NORTH);
             }
@@ -523,29 +547,43 @@ namespace CS4227.Constructs
 
         public void refresh()
         {
-            Console.WriteLine("\n" + getCurrentRoom().getLongDescription());
-            Console.WriteLine(player.ToString());
-            bool first = true;
-            foreach (Item i in items)
+            if (player.getDead())
             {
-                if (rooms[i.getRoomRow(), i.getRoomCol()] == getCurrentRoom() && i.getActive())
+                lose();
+            }
+            if (!won && !lost) {
+                Console.WriteLine("\n" + getCurrentRoom().getLongDescription());
+                Console.WriteLine(player.ToString());
+                bool first = true;
+                foreach (Item i in items)
                 {
-                    if (first)
+                    if (rooms[i.getRoomRow(), i.getRoomCol()] == getCurrentRoom() && i.getActive())
                     {
-                        Console.WriteLine("\nItems:");
-                        first = false;
+                        if (first)
+                        {
+                            Console.WriteLine("\nItems:");
+                            first = false;
+                        }
+                        Console.WriteLine(i.getName());
                     }
-                    Console.WriteLine(i.getName());
+                }
+
+                foreach (Enemy e in enemies)
+                {
+                    if (rooms[e.getRoomRow(), e.getRoomCol()] == getCurrentRoom() && (!e.getDead()))
+                    {
+                        Console.WriteLine("\n" + e.ToString());
+                        e.speak();
+                    }
                 }
             }
-
-            foreach (Enemy e in enemies)
+            else if (won)
             {
-                if (rooms[e.getRoomRow(), e.getRoomCol()] == getCurrentRoom() && (!e.getDead()))
-                {
-                    Console.WriteLine("\n" + e.ToString());
-                    e.speak();
-                }
+                Console.WriteLine("\nCongratulations you won the game!\nType R to restart");
+            } 
+            else if (lost)
+            {
+                Console.WriteLine("\n\nYou have died.\n\nGAME OVER.\n\nType R to restart");
             }
         }
 
@@ -620,6 +658,21 @@ namespace CS4227.Constructs
                 o.restore(mementos[mementos.Count-1]);
                 mementos.Remove(mementos[mementos.Count - 1]);
             }
+        }
+
+        void win()
+        {
+            won = true;
+        }
+
+        void lose()
+        {
+            lost = true;
+        }
+
+        public void restart()
+        {
+            makeMaze();
         }
     }
 }
