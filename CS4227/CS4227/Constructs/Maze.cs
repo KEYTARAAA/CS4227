@@ -31,6 +31,7 @@ namespace CS4227.Constructs
         int undos = 5;
         public Maze()
         {
+            Console.WriteLine("Test");
             player = new Player("Player", 0, 0, 100, 10);
             rooms = new Room[3,3];
             enemies = new List<Enemy>();
