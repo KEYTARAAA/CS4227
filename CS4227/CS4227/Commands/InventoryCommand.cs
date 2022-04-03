@@ -1,4 +1,5 @@
 ﻿using CS4227.Constructs;
+using CS4227.Facade;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,9 +8,9 @@ namespace CS4227.Commands
 {
     class InventoryCommand: Command
     {
-        Maze maze;
+        MazeFacade maze;
 
-        public InventoryCommand(Maze maze)
+        public InventoryCommand(MazeFacade maze)
         {
             this.maze = maze;
         }

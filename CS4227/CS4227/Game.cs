@@ -3,22 +3,19 @@ using CS4227.Characters.Enemies;
 using CS4227.Constructs;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using CS4227.Interceptors;
 using CS4227.ContextObjects;
-
-using CS4227.Characters.Enemies;
 
 using CS4227.Characters;
 
 using CS4227.Dispatchers;
-
+using CS4227.Facade;
 
 namespace CS4227
 {
     class Game
     {
-        Maze maze;
+        MazeFacade maze;
         List<Dispatcher> dispatchers;
         Controller controller;
         int count = 0;

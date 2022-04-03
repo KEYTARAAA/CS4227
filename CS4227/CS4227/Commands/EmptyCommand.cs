@@ -12,7 +12,7 @@ namespace CS4227.Commands
         }
         public string getType()
         {
-            return "";
+            return "Empty";
         }
     }
 }

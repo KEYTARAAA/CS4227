@@ -11,20 +11,15 @@ namespace CS4227.Characters.Enemies
 {
     class BearEnemy: Enemy, Visitable
     {
-        public BearEnemy(string name, 
-            int startingRoomRow, 
-            int startingRoomCol, 
-            int health, 
-            int attack, 
-            string sound, 
-            MovementInterface movementType) 
-            : base(name, startingRoomRow, startingRoomCol, health, attack, sound, movementType)
+        public BearEnemy()
         {
-            this.type = "BEAR";
+               this.type = "BEAR";
         }
+
         public override void accept(VisitorInterface visitor)
         {
             visitor.visit(this);
         }
+
     }
 }

@@ -8,18 +8,18 @@ using System.Collections.Generic;
 using System.Text;
 using CS4227.Characters.Items;
 using CS4227.Memento;
+using CS4227.Builder;
+using CS4227.Facade;
 
 namespace CS4227.Constructs
 {
-    class Maze : Caretaker
+    class Maze : Caretaker, MazeFacade
     {
         Player player;
         Room[,] rooms;
         Random rnd;
         List<Enemy> enemies;
         List<Item> items;
-        MazeRoom currentRoom;
-        Dictionary<string, MazeRoom> currentExits;
 
         List<IMemento> playerMementos;
         List<List<IMemento>> enemyMementos;
@@ -70,9 +70,36 @@ namespace CS4227.Constructs
             }
 
             printMaze();
-            player.accept(difficulty);
-            makeEnemy(new BearEnemy( "George", 2, 2, 50, 2,"ROARRRRR", new ClockwiseMove()));
-            makeEnemy(new SnakeEnemy("Wriggles", 1, 1, 5, 30, "HISSSSSS", new NormalMove()));
+
+            Director director = new Director();
+            BearEnemyBuilder bearBuilder = new BearEnemyBuilder();
+
+            director.setBuilder(bearBuilder);
+
+            director.makeBlindBearEnemy();
+            BearEnemy bear1 = bearBuilder.getResult();
+            makeEnemy(bear1);
+            bearBuilder.reset();
+
+            director.makeNormalBearEnemy();
+            BearEnemy bear2 = bearBuilder.getResult();
+            makeEnemy(bear2);
+            bearBuilder.reset();
+
+            SnakeEnemyBuilder snakeBuilder = new SnakeEnemyBuilder();
+            snakeBuilder = new SnakeEnemyBuilder();
+
+            director.setBuilder(snakeBuilder);
+
+            director.makeNormalSnakeEnemy();
+            SnakeEnemy snake = snakeBuilder.getResult();
+            makeEnemy(snake);
+            snakeBuilder.reset();
+
+            director.makeBlindSnakeEnemy();
+            SnakeEnemy snake2 = snakeBuilder.getResult();
+            makeEnemy(snake2);
+            snakeBuilder.reset();
 
             makeItem(new Item("Key"));
             makeItem(new StatChangingItem("Sword", (new Dictionary<STAT, int>() { [STAT.ATTACK] = 10 })));
@@ -395,7 +422,7 @@ namespace CS4227.Constructs
         public void movePlayerSouth()
         {
             makeMementos();
-            if (roomExists(Direction.SOUTH, rooms[player.getRoomRow(), player.getRoomCol()]))
+            if (rooms[player.getRoomRow(), player.getRoomCol()].getExit(Direction.SOUTH))
             {
                 player.move(Direction.SOUTH);
             }
@@ -405,7 +432,7 @@ namespace CS4227.Constructs
         public void movePlayerNorth()
         {
             makeMementos();
-            if (roomExists(Direction.NORTH, rooms[player.getRoomRow(), player.getRoomCol()]))
+            if (rooms[player.getRoomRow(), player.getRoomCol()].getExit(Direction.NORTH))
             {
                 player.move(Direction.NORTH);
             }
@@ -415,7 +442,7 @@ namespace CS4227.Constructs
         public void movePlayerEast()
         {
             makeMementos();
-            if (roomExists(Direction.EAST, rooms[player.getRoomRow(), player.getRoomCol()]))
+            if (rooms[player.getRoomRow(), player.getRoomCol()].getExit(Direction.EAST))
             {
                 player.move(Direction.EAST);
             }
@@ -425,14 +452,12 @@ namespace CS4227.Constructs
         public void movePlayerWest()
         {
             makeMementos();
-            if (roomExists(Direction.WEST, rooms[player.getRoomRow(), player.getRoomCol()]))
+            if (rooms[player.getRoomRow(), player.getRoomCol()].getExit(Direction.WEST))
             {
                 player.move(Direction.WEST);
             }
             moveEnemies();
         }
-
-
 
         public void moveEnemies()
         {
@@ -445,24 +470,24 @@ namespace CS4227.Constructs
             }
             enemiesAttack();
         }
+
         public void enemiesAttack()
         {
             foreach (Enemy enemy in enemies)
             {
-                if (((enemy.getRoomRow() == player.getRoomRow()) && (enemy.getRoomCol() == player.getRoomCol())))
+                if (((enemy.getRoomRow() == player.getRoomRow()) && (enemy.getRoomCol() == player.getRoomCol())) && !enemy.getDead())
                 {
-                    if (!enemy.getDead()) {
                         enemy.attackOther(player);
-                    }
                 }
             }
         }
+
         public void playerAttack()
         {
             makeMementos();
             foreach (Enemy enemy in enemies)
             {
-                if (((enemy.getRoomRow() == player.getRoomRow()) && (enemy.getRoomCol() == player.getRoomCol())))
+                if (((enemy.getRoomRow() == player.getRoomRow()) && (enemy.getRoomCol() == player.getRoomCol())) && !enemy.getDead())
                 {
                     player.attackOther(enemy);
                 }
@@ -474,6 +499,7 @@ namespace CS4227.Constructs
         {
             player.printInventory();
         }
+
         public void playerPickUp()
         {
             makeMementos();
@@ -486,11 +512,6 @@ namespace CS4227.Constructs
                 }
             }
             moveEnemies();
-        }
-
-        public void setRoom(MazeRoom room)
-        {
-            this.currentRoom = room;
         }
 
         public List<Enemy> getEnemies()

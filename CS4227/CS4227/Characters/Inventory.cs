@@ -85,5 +85,10 @@ namespace CS4227.Characters
                 Console.Write(" " + stat.ToString() + " " + sign + change + " ");
             }
         }
+
+        public List<Item> getInventory()
+        {
+            return inventory;
+        }
     }
 }

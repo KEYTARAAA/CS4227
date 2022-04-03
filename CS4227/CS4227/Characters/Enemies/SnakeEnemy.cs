@@ -10,14 +10,8 @@ namespace CS4227.Characters.Enemies
 {
     class SnakeEnemy : Enemy, Visitable
     {
-        public SnakeEnemy(string name, 
-            int startingRoomRow, 
-            int startingRoomCol, 
-            int health, 
-            int attack, 
-            string sound, 
-            MovementInterface movementType) 
-            : base(name, startingRoomRow, startingRoomCol, health, attack, sound, movementType)
+
+        public SnakeEnemy()
         {
             this.type = "SNAKE";
         }
