@@ -1,13 +1,16 @@
 ﻿using CS4227.Characters.Items;
 using CS4227.Constructs;
+using CS4227.Visitor;
+
 using CS4227.Memento;
 using System;
 using System.Collections.Generic;
+
 using System.Text;
 
 namespace CS4227.Characters
 {
-    class Player: Character, Movable, Originator
+    class Player: Character, Movable, Originator, Visitable
     {
         Inventory inventory;
         public Player(string name, int startingRoomRow, int startingRoomCol, int health, int attack) : base(name, startingRoomRow, startingRoomCol, health, attack)
@@ -87,6 +90,13 @@ namespace CS4227.Characters
             this.dead = playerMemento.getDead();
         }
 
+       
+
+        public override void accept(VisitorInterface visitor)
+        {
+            visitor.visit(this);
+        }
+
         public class PlayerMemento: IMemento
         {
             string name;
@@ -138,6 +148,8 @@ namespace CS4227.Characters
             {
                 return dead;
             }
+
+            
         }
     }
 }

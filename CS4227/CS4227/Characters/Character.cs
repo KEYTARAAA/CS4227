@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CS4227.Visitor;
 
 namespace CS4227.Characters
 {
-    abstract class Character
+    abstract class Character: Visitable
     {
         protected int roomRow, roomCol, health, attack;
         protected string name;
@@ -112,5 +113,8 @@ namespace CS4227.Characters
 
 
         abstract public void die();
+
+        abstract public void accept(VisitorInterface visitor);
+
     }
 }

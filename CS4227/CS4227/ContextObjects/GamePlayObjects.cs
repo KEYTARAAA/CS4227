@@ -41,8 +41,5 @@ namespace CS4227.ContextObjects
             return game.getLastCommand();
 
         }
-
-        public void consume_service() { }
-
     }
 }
