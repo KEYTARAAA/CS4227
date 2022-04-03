@@ -1,4 +1,5 @@
 ﻿using CS4227.Constructs;
+using CS4227.Facade;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,9 +8,9 @@ namespace CS4227.Commands
 {
     class UndoCommand: Command
     {
-        Maze maze;
+        MazeFacade maze;
 
-        public UndoCommand(Maze maze)
+        public UndoCommand(MazeFacade maze)
         {
             this.maze = maze;
         }

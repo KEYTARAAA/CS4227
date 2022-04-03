@@ -9,18 +9,17 @@ using System.Text;
 using CS4227.Characters.Items;
 using CS4227.Memento;
 using CS4227.Builder;
+using CS4227.Facade;
 
 namespace CS4227.Constructs
 {
-    class Maze : Caretaker
+    class Maze : Caretaker, MazeFacade
     {
         Player player;
         Room[,] rooms;
         Random rnd;
         List<Enemy> enemies;
         List<Item> items;
-        MazeRoom currentRoom;
-        Dictionary<string, MazeRoom> currentExits;
 
         List<IMemento> playerMementos;
         List<List<IMemento>> enemyMementos;
@@ -415,7 +414,7 @@ namespace CS4227.Constructs
         public void movePlayerSouth()
         {
             makeMementos();
-            if (roomExists(Direction.SOUTH, rooms[player.getRoomRow(), player.getRoomCol()]))
+            if (rooms[player.getRoomRow(), player.getRoomCol()].getExit(Direction.SOUTH))
             {
                 player.move(Direction.SOUTH);
             }
@@ -425,7 +424,7 @@ namespace CS4227.Constructs
         public void movePlayerNorth()
         {
             makeMementos();
-            if (roomExists(Direction.NORTH, rooms[player.getRoomRow(), player.getRoomCol()]))
+            if (rooms[player.getRoomRow(), player.getRoomCol()].getExit(Direction.NORTH))
             {
                 player.move(Direction.NORTH);
             }
@@ -435,7 +434,7 @@ namespace CS4227.Constructs
         public void movePlayerEast()
         {
             makeMementos();
-            if (roomExists(Direction.EAST, rooms[player.getRoomRow(), player.getRoomCol()]))
+            if (rooms[player.getRoomRow(), player.getRoomCol()].getExit(Direction.EAST))
             {
                 player.move(Direction.EAST);
             }
@@ -445,7 +444,7 @@ namespace CS4227.Constructs
         public void movePlayerWest()
         {
             makeMementos();
-            if (roomExists(Direction.WEST, rooms[player.getRoomRow(), player.getRoomCol()]))
+            if (rooms[player.getRoomRow(), player.getRoomCol()].getExit(Direction.WEST))
             {
                 player.move(Direction.WEST);
             }
@@ -507,11 +506,6 @@ namespace CS4227.Constructs
                 }
             }
             moveEnemies();
-        }
-
-        public void setRoom(MazeRoom room)
-        {
-            this.currentRoom = room;
         }
 
         public List<Enemy> getEnemies()
