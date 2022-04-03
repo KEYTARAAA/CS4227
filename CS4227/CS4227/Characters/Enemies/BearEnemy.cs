@@ -9,9 +9,16 @@ using CS4227.Visitor;
 
 namespace CS4227.Characters.Enemies
 {
-    class BearEnemy: Enemy
+    class BearEnemy: Enemy, Visitable
     {
-        public BearEnemy(string name, int startingRoomRow, int startingRoomCol, int health, int attack, string sound, MovementInterface movementType) : base(name, startingRoomRow, startingRoomCol, health, attack, sound, movementType)
+        public BearEnemy(string name, 
+            int startingRoomRow, 
+            int startingRoomCol, 
+            int health, 
+            int attack, 
+            string sound, 
+            MovementInterface movementType) 
+            : base(name, startingRoomRow, startingRoomCol, health, attack, sound, movementType)
         {
             this.type = "BEAR";
         }

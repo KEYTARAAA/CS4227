@@ -33,14 +33,6 @@ namespace CS4227.Dispatchers
             interceptors.Remove(interceptor);
 
         }
-        /*public void iterate_list()
-        {
-            foreach (Interceptor interceptor in interceptors)
-            {
-                interceptor.dispatch();
-            }
-
-        }*/
 
     }
 }

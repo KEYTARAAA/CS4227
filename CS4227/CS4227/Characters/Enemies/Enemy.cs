@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CS4227.Characters.Enemies
 {
-    abstract class Enemy: Character, Visitable, Originator
+    abstract class Enemy: Character, Originator
     {
         protected string sound = "", type = "ENEMY";
         MovementInterface movementType;
@@ -42,7 +42,6 @@ namespace CS4227.Characters.Enemies
             dead = true;
             Console.WriteLine("You have defeated " + type + " "+ name);
         }
-        abstract public void accept(VisitorInterface visitor);
 
 
         public IMemento createMemento()

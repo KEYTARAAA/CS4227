@@ -43,26 +43,34 @@ namespace CS4227.Constructs
 
             genRooms();
 
-            Console.WriteLine("Type E for Easy or H for Hard");
+            Console.WriteLine("Type 1 for Super Easy, 2 for Easy, 3 for Hard, 4 for Impossible");
             string input = Console.ReadLine().ToUpper();
             string[] inputs = input.Split(' ');
-            while(inputs[0] != "E" & inputs[0] != "H")
+            while(inputs[0] != "1" & inputs[0] != "2" & inputs[0] != "3" & inputs[0] != "4")
             {
                 Console.WriteLine("Invalid Choice! Please type E for Easy or H for Hard");
                 input = Console.ReadLine().ToUpper();
                 inputs = input.Split(' ');
             }
-            if(inputs[0] == "E")
+            if(inputs[0] == "1")
             {
-                difficulty = new EasyMode();
+                difficulty = new SetDifficultyVeryEasyVisitor();
+            }
+            else if(inputs[0] == "2")
+            {
+                 difficulty = new SetDifficultyEasyVisitor();
+            }
+            else if (inputs[0] == "3")
+            {
+                difficulty = new SetDifficultyHardVisitor();
             }
             else
             {
-                 difficulty = new HardMode();
+                difficulty = new SetDifficultyImpossibleVisitor();
             }
 
             printMaze();
-
+            player.accept(difficulty);
             makeEnemy(new BearEnemy( "George", 2, 2, 50, 2,"ROARRRRR", new ClockwiseMove()));
             makeEnemy(new SnakeEnemy("Wriggles", 1, 1, 5, 30, "HISSSSSS", new NormalMove()));
 

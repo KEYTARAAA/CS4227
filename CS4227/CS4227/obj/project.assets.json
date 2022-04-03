@@ -8,23 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Kitara\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\ronal\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Kitara\\Desktop\\ME\\College\\4th_Year\\Sem_2\\CS4227\\CS4227\\CS4227\\CS4227.csproj",
+      "projectUniqueName": "C:\\Users\\ronal\\source\\repos\\CS4227\\CS4227_2\\CS4227\\CS4227\\CS4227.csproj",
       "projectName": "CS4227",
-      "projectPath": "C:\\Users\\Kitara\\Desktop\\ME\\College\\4th_Year\\Sem_2\\CS4227\\CS4227\\CS4227\\CS4227.csproj",
-      "packagesPath": "C:\\Users\\Kitara\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Kitara\\Desktop\\ME\\College\\4th_Year\\Sem_2\\CS4227\\CS4227\\CS4227\\obj\\",
+      "projectPath": "C:\\Users\\ronal\\source\\repos\\CS4227\\CS4227_2\\CS4227\\CS4227\\CS4227.csproj",
+      "packagesPath": "C:\\Users\\ronal\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ronal\\source\\repos\\CS4227\\CS4227_2\\CS4227\\CS4227\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Kitara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ronal\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -64,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

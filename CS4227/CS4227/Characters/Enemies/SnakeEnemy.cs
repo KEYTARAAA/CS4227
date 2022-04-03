@@ -8,9 +8,16 @@ using CS4227.Visitor;
 
 namespace CS4227.Characters.Enemies
 {
-    class SnakeEnemy : Enemy
+    class SnakeEnemy : Enemy, Visitable
     {
-        public SnakeEnemy(string name, int startingRoomRow, int startingRoomCol, int health, int attack, string sound, MovementInterface movementType) : base(name, startingRoomRow, startingRoomCol, health, attack, sound, movementType)
+        public SnakeEnemy(string name, 
+            int startingRoomRow, 
+            int startingRoomCol, 
+            int health, 
+            int attack, 
+            string sound, 
+            MovementInterface movementType) 
+            : base(name, startingRoomRow, startingRoomCol, health, attack, sound, movementType)
         {
             this.type = "SNAKE";
         }
