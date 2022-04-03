@@ -467,11 +467,9 @@ namespace CS4227.Constructs
         {
             foreach (Enemy enemy in enemies)
             {
-                if (((enemy.getRoomRow() == player.getRoomRow()) && (enemy.getRoomCol() == player.getRoomCol())))
+                if (((enemy.getRoomRow() == player.getRoomRow()) && (enemy.getRoomCol() == player.getRoomCol())) && !enemy.getDead())
                 {
-                    if (!enemy.getDead()) {
                         enemy.attackOther(player);
-                    }
                 }
             }
         }
@@ -481,7 +479,7 @@ namespace CS4227.Constructs
             makeMementos();
             foreach (Enemy enemy in enemies)
             {
-                if (((enemy.getRoomRow() == player.getRoomRow()) && (enemy.getRoomCol() == player.getRoomCol())))
+                if (((enemy.getRoomRow() == player.getRoomRow()) && (enemy.getRoomCol() == player.getRoomCol())) && !enemy.getDead())
                 {
                     player.attackOther(enemy);
                 }
