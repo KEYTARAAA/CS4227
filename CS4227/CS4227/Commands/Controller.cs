@@ -17,6 +17,7 @@ namespace CS4227.Commands
         Command pickUpCommand;
         Command inventoryCommand;
         Command undoCommand;
+        Command restartCommand;
         Command exitCommand;
         Command emptyCommand;
         Command lastCommand;
@@ -60,6 +61,9 @@ namespace CS4227.Commands
                     undoCommand = command;
                     break;
                 case 11:
+                    restartCommand = command;
+                    break;
+                case 12:
                     exitCommand = command;
                     break;
             }
@@ -96,6 +100,9 @@ namespace CS4227.Commands
                     break;
                 case "U":
                     undoCommand.execute();
+                    break;
+                case "R":
+                    restartCommand.execute();
                     break;
                 case "?":
                     instructionsCommand.execute();

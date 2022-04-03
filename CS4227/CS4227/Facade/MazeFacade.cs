@@ -22,5 +22,6 @@ namespace CS4227.Facade
         public void movePlayerWest();
         public void playerPickUp();
         public void undo();
+        public void restart();
     }
 }
