@@ -96,8 +96,6 @@ namespace CS4227
         public string getLastCommand()
         {
             return controller.getLastCommand();
-
-
         }
 
         public Player getPlayer()
