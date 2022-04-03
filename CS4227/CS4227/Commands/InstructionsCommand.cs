@@ -11,14 +11,10 @@ namespace CS4227.Commands
         {
             Console.WriteLine(CONSTS.INSTRUCTIONS);
         }
-        public void undo()
-        {
-
-        }
 
         public string getType()
         {
-            return "";
+            return "Instructions";
         }
     }
 }
