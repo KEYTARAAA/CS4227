@@ -401,7 +401,7 @@ namespace CS4227.Constructs
         public void movePlayerSouth()
         {
             makeMementos();
-            if (roomExists(Direction.SOUTH, rooms[player.getRoomRow(), player.getRoomCol()]))
+            if (rooms[player.getRoomRow(), player.getRoomCol()].getExit(Direction.SOUTH))
             {
                 player.move(Direction.SOUTH);
             }
@@ -411,7 +411,7 @@ namespace CS4227.Constructs
         public void movePlayerNorth()
         {
             makeMementos();
-            if (roomExists(Direction.NORTH, rooms[player.getRoomRow(), player.getRoomCol()]))
+            if (rooms[player.getRoomRow(), player.getRoomCol()].getExit(Direction.NORTH))
             {
                 player.move(Direction.NORTH);
             }
@@ -421,7 +421,7 @@ namespace CS4227.Constructs
         public void movePlayerEast()
         {
             makeMementos();
-            if (roomExists(Direction.EAST, rooms[player.getRoomRow(), player.getRoomCol()]))
+            if (rooms[player.getRoomRow(), player.getRoomCol()].getExit(Direction.EAST))
             {
                 player.move(Direction.EAST);
             }
@@ -431,7 +431,7 @@ namespace CS4227.Constructs
         public void movePlayerWest()
         {
             makeMementos();
-            if (roomExists(Direction.WEST, rooms[player.getRoomRow(), player.getRoomCol()]))
+            if (rooms[player.getRoomRow(), player.getRoomCol()].getExit(Direction.WEST))
             {
                 player.move(Direction.WEST);
             }
