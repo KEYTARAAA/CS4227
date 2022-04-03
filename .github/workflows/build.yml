@@ -45,6 +45,11 @@ jobs:
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v1.0.2
         
+      - name: DontNet Restore
+        shell: powershell
+        run: |
+          dotnet restore CS4227/CS4227.sln
+          
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
@@ -52,5 +57,5 @@ jobs:
         shell: powershell
         run: |
           .\.sonar\scanner\dotnet-sonarscanner begin /k:"mdkilmallock_CS4227" /o:"mdkilmallock" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-          C:\"Program Files"\"Microsoft Visual Studio"\2022\Enterprise\MSBuild\Current\Bin\MSBuild.exe CS4227/CS4227.sln
+          C:\"Program Files"\"Microsoft Visual Studio"\2022\Enterprise\MSBuild\Current\Bin\MSBuild.exe CS4227/CS4227/CS4227.csproj
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
