@@ -24,7 +24,7 @@ namespace CS4227.Characters.Enemies
             visitor.visit(this);
         }
 
-        public override string getPortrail()
+        public override string getPortrait()
         {
             return          "             ____\n" +
                             "            / " + eyes + " " + eyes + "\\\n" +

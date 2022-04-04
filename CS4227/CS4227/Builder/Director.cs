@@ -9,8 +9,14 @@ namespace CS4227.Builder
     {
         private IBuilder builder;
 
+        public Director()
+        {
+            Console.WriteLine("***BUILDER: Creating a Director***");
+        }
+
         public void setBuilder(IBuilder builder)
         {
+            Console.WriteLine("***BUILDER: Setting the Builder in the Director***");
             this.builder = builder;
         }
 

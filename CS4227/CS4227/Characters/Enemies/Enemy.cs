@@ -33,7 +33,7 @@ namespace CS4227.Characters.Enemies
         {
             Console.WriteLine(sound);
         }
-        abstract public string getPortrail();
+        abstract public string getPortrait();
 
         public void setNewlyDead(bool newlyDead)
         {
