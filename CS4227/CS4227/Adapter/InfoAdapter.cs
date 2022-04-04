@@ -8,7 +8,7 @@ namespace CS4227.Adapter
 {
     class InfoAdapter : IInfo
     {
-        private string info;
+        private readonly string info;
         public InfoAdapter(Enemy enemy)
         {
             info = "Enemy Info: " + enemy.getName() + " Health: " + enemy.getHealth() + " Attack: " + enemy.getAttack();
