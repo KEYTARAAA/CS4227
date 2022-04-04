@@ -10,6 +10,7 @@ using CS4227.Characters.Items;
 using CS4227.Memento;
 using CS4227.Builder;
 using CS4227.Facade;
+using CS4227.Adapter;
 
 namespace CS4227.Constructs
 {
@@ -554,6 +555,7 @@ namespace CS4227.Constructs
             if (!won && !lost) {
                 Console.WriteLine("\n" + getCurrentRoom().getLongDescription());
                 Console.WriteLine(player.ToString());
+                InfoAdapter infoAdapter;
                 bool first = true;
                 foreach (Item i in items)
                 {
@@ -564,7 +566,8 @@ namespace CS4227.Constructs
                             Console.WriteLine("\nItems:");
                             first = false;
                         }
-                        Console.WriteLine(i.getName());
+                        infoAdapter = new InfoAdapter(i);
+                        Console.WriteLine(infoAdapter.getInfo());
                     }
                 }
 
@@ -573,6 +576,8 @@ namespace CS4227.Constructs
                     if (rooms[e.getRoomRow(), e.getRoomCol()] == getCurrentRoom() && (!e.getDead()))
                     {
                         Console.WriteLine("\n" + e.ToString());
+                        infoAdapter = new InfoAdapter(e);
+                        Console.WriteLine(infoAdapter.getInfo());
                         e.speak();
                     }
                 }
