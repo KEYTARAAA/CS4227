@@ -29,6 +29,7 @@ namespace CS4227.Constructs
 
 
         VisitorInterface difficulty;
+        VisitorInterface introduction;
 
         int undos = 5;
         public Maze()
@@ -51,6 +52,8 @@ namespace CS4227.Constructs
             lost = false;
 
             genRooms();
+
+            introduction = new IntroductionVisitor();
 
             Console.WriteLine("Type 1 for Super Easy, 2 for Easy, 3 for Hard, 4 for Impossible");
             string input = Console.ReadLine().ToUpper();
@@ -80,6 +83,9 @@ namespace CS4227.Constructs
 
             printMaze();
 
+            List<Character> characters = new List<Character>();
+            characters.Add(player);
+
             Director director = new Director();
             BearEnemyBuilder bearBuilder = new BearEnemyBuilder();
 
@@ -90,28 +96,49 @@ namespace CS4227.Constructs
             makeEnemy(bear1);
             bearBuilder.reset();
 
+            characters.Add(bear1);
+
             director.makeNormalBearEnemy();
             BearEnemy bear2 = bearBuilder.getResult();
             makeEnemy(bear2);
             bearBuilder.reset();
+
+            characters.Add(bear2);
+
 
             SnakeEnemyBuilder snakeBuilder = new SnakeEnemyBuilder();
             snakeBuilder = new SnakeEnemyBuilder();
 
             director.setBuilder(snakeBuilder);
 
-            director.makeNormalSnakeEnemy();
-            SnakeEnemy snake = snakeBuilder.getResult();
-            makeEnemy(snake);
-            snakeBuilder.reset();
-
             director.makeBlindSnakeEnemy();
             SnakeEnemy snake2 = snakeBuilder.getResult();
             makeEnemy(snake2);
             snakeBuilder.reset();
 
+            characters.Add(snake2);
+
+            director.makeNormalSnakeEnemy();
+            SnakeEnemy snake1 = snakeBuilder.getResult();
+            makeEnemy(snake1);
+            snakeBuilder.reset();
+
+            characters.Add(snake1);
+
+
+            
+
+            foreach(Character character in characters)
+            {
+                character.accept(introduction);
+            }
+
+
             makeItem(new Item("Key"));
             makeItem(new StatChangingItem("Sword", (new Dictionary<STAT, int>() { [STAT.ATTACK] = 10 })));
+
+
+
             placeItems();
         }
 
@@ -591,6 +618,17 @@ namespace CS4227.Constructs
                 Console.WriteLine("\n\nYou have died.\n\nGAME OVER.\n\nType R to restart");
             }
         }
+
+        public bool getWin()
+        {
+            return won;
+        }
+
+        public bool getLoss()
+        {
+            return lost;
+        }
+
 
         public Player getPlayer()
         {

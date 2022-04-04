@@ -14,6 +14,8 @@ namespace CS4227.Visitor
         {
             bearEnemy.setHealth((int)(bearEnemy.getHealth() * .75));
             bearEnemy.setAttack((int)(bearEnemy.getHealth() * .75));
+            Console.WriteLine("***Visitor Pattern: Set Difficulty Visitor is called***");
+
 
         }
 
@@ -21,12 +23,16 @@ namespace CS4227.Visitor
         {
             snakeEnemy.setHealth((int)(snakeEnemy.getHealth() * .75));
             snakeEnemy.setAttack((int)(snakeEnemy.getHealth() * .75));
+            Console.WriteLine("***Visitor Pattern: Set Difficulty Visitor is called***");
+
         }
 
         public void visit(Player player)
         {
             player.setHealth((int)(player.getHealth() * 1.25));
             player.setAttack((int)(player.getHealth() * 1.25));
+            Console.WriteLine("***Visitor Pattern: Set Difficulty Visitor is called***");
+
         }
     }
 }

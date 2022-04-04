@@ -24,14 +24,34 @@ namespace CS4227.Interceptors
 
             string[] totalStats = db.readTotalStats(contextObject.getPlayerName());
             int[] myInts = Array.ConvertAll(totalStats, s => int.Parse(s));
-            if (contextObject.getCommand() == "Attack") {
-                myInts[0] += 1;
-            }
 
-            if (contextObject.getCommand() == "MoveNorth" || contextObject.getCommand() == "MoveSouth" 
-                || contextObject.getCommand() == "MoveWest" || contextObject.getCommand() == "MoveEast")
+
+            if (contextObject.getDead())
             {
-                myInts[4] += 1;
+                myInts[3] += 1;
+            }
+            else if (contextObject.getWin())
+            {
+                myInts[5] += 1;
+            }
+            else
+            {
+                if (contextObject.getCommand() == "Attack")
+                {
+                    myInts[0] += 1;
+                }
+
+                if (contextObject.getCommand() == "MoveNorth" || contextObject.getCommand() == "MoveSouth"
+                    || contextObject.getCommand() == "MoveWest" || contextObject.getCommand() == "MoveEast")
+                {
+                    myInts[4] += 1;
+                }
+
+                List<bool> killedEnemies = contextObject.getEnemies();
+                foreach(bool killedEnemy in killedEnemies)
+                {
+                    if (killedEnemy) { myInts[1] += 1; }
+                }
             }
 
             string[] result = Array.ConvertAll(myInts, x => x.ToString());

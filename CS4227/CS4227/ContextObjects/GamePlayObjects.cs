@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using CS4227.Characters.Enemies;
 
 using System.Text;
 
@@ -27,6 +28,29 @@ namespace CS4227.ContextObjects
         {
 
             return game.getEnemiesHealth();
+        }
+
+        public Boolean getDead()
+        {
+            return game.getDead();
+        }
+
+        
+
+        public bool getWin()
+        {
+            return game.getWin();
+        }
+
+        public List<bool> getEnemies()
+        {
+            List<Enemy> enemies = game.getEnemies();
+            List<bool> deadEnemies = new List<bool>();
+            foreach(Enemy enemy in enemies)
+            {
+                deadEnemies.Add(enemy.getNewlyDead());
+            }
+            return deadEnemies;
         }
 
         public string getFull()

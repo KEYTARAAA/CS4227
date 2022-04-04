@@ -23,5 +23,9 @@ namespace CS4227.Facade
         public void playerPickUp();
         public void undo();
         public void restart();
+
+        public bool getWin();
+
+        public bool getLoss();
     }
 }

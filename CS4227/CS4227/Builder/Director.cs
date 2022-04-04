@@ -27,6 +27,8 @@ namespace CS4227.Builder
             builder.setHealth(30);
             builder.setAttack(5);
             builder.setSound("Blind Roar");
+            Console.WriteLine("***BRIDGE: Movement Type is defined for Blind Bear***");
+
         }
 
         public void makeNormalBearEnemy()
@@ -42,6 +44,8 @@ namespace CS4227.Builder
             builder.setHealth(30);
             builder.setAttack(5);
             builder.setSound("Roar");
+            Console.WriteLine("***BRIDGE: Movement Type is defined for Normal Bear***");
+
         }
 
         public void makeBlindSnakeEnemy()
@@ -57,6 +61,8 @@ namespace CS4227.Builder
             builder.setHealth(30);
             builder.setAttack(5);
             builder.setSound("Blind Hiss");
+            Console.WriteLine("***BRIDGE: Movement Type is defined for Blind Snake***");
+
         }
 
         public void makeNormalSnakeEnemy()
@@ -72,6 +78,8 @@ namespace CS4227.Builder
             builder.setHealth(30);
             builder.setAttack(5);
             builder.setSound("Hiss");
+            Console.WriteLine("***BRIDGE: Movement Type is defined for Normal Snake***");
+
         }
     }
 }

@@ -7,14 +7,16 @@ using System.Text;
 
 namespace CS4227.Characters.Enemies
 {
-    abstract class Enemy: Character, Originator
+    abstract class Enemy : Character, Originator
     {
         protected string sound = "", type = "ENEMY";
         MovementInterface movementType;
+        bool newlyDead;
         public Enemy(string name, int startingRoomRow, int startingRoomCol, int health, int attack, string sound, MovementInterface movementType) : base(name, startingRoomRow, startingRoomCol, health, attack)
         {
             this.sound = sound;
             this.movementType = movementType;
+            newlyDead = false;
         }
 
         public Enemy() : base()
@@ -32,6 +34,17 @@ namespace CS4227.Characters.Enemies
             Console.WriteLine(sound);
         }
 
+        public void setNewlyDead(bool newlyDead)
+        {
+            this.newlyDead = newlyDead;
+        }
+        public bool getNewlyDead()
+        {
+            bool tempNewlyDead = newlyDead;
+            newlyDead = false;
+            return tempNewlyDead;
+        }
+
         public string getType()
         {
             return type;
@@ -47,6 +60,7 @@ namespace CS4227.Characters.Enemies
         public void die()
         {
             dead = true;
+            newlyDead = true;
             Console.WriteLine("You have defeated " + name);
         }
 
@@ -132,6 +146,10 @@ namespace CS4227.Characters.Enemies
             {
                 return dead;
             }
+
+
+
+
         }
     }
 }
