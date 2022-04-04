@@ -28,8 +28,6 @@ namespace CS4227
             Interceptor gameplayinterceptor = new GamePlayInterceptor(gameplayobject);
             dispatcher.register(gameplayinterceptor);
             dispatchers.Add(dispatcher);
-            //DB db = new DB();
-            //db.createFile("sean");
 
             controller = new Controller();
             Command emptyCommand = new EmptyCommand();
@@ -103,6 +101,17 @@ namespace CS4227
             return maze.getPlayer();
         }
 
+
+        public Boolean getDead()
+        {
+            return maze.getPlayer().getDead();
+        }
+
+        public List<Enemy> getEnemies()
+        {
+            return maze.getEnemies();
+        }
+
         public string getFull()
         {
             return maze.getFull() + "," + count.ToString() + Environment.NewLine;
@@ -113,6 +122,18 @@ namespace CS4227
             {
                 dispatcher.dispatch();
             }
+            Console.WriteLine("***INTERCEPTOR: Gameplay states interceptor called***");
+
+        }
+
+        public bool getWin()
+        {
+            return maze.getWin();
+        }
+
+        public bool getLoss()
+        {
+            return maze.getLoss();
         }
 
         private bool terminalInputReciever()

@@ -76,39 +76,51 @@ namespace CS4227.Commands
             {
                 case "N":
                     moveNorthCommand.execute();
+                    lastCommand = moveNorthCommand;
                     break;
                 case "S":
                     moveSouthCommand.execute();
+                    lastCommand = moveSouthCommand;
                     break;
                 case "E":
                     moveEastCommand.execute();
+                    lastCommand = moveEastCommand;
                     break;
                 case "W":
                     moveWestCommand.execute();
+                    lastCommand = moveWestCommand;
                     break;
                 case "A":
                     attackCommand.execute();
+                    lastCommand = attackCommand;
                     break;
                 case "M":
                     mapCommand.execute();
+                    lastCommand = mapCommand;
                     break;
                 case "P":
                     pickUpCommand.execute();
+                    lastCommand = pickUpCommand;
                     break;
                 case "I":
                     inventoryCommand.execute();
+                    lastCommand = inventoryCommand;
                     break;
                 case "U":
                     undoCommand.execute();
+                    lastCommand = undoCommand;
                     break;
                 case "R":
                     restartCommand.execute();
+                    lastCommand = restartCommand;
                     break;
                 case "?":
                     instructionsCommand.execute();
+                    lastCommand = instructionsCommand;
                     break;
                 case "EXIT":
                     exitCommand.execute();
+                    lastCommand = exitCommand;
                     break;
                 default:
                     emptyCommand.execute();
