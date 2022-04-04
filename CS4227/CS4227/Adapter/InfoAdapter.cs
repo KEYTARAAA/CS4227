@@ -11,7 +11,7 @@ namespace CS4227.Adapter
         private readonly string info;
         public InfoAdapter(Enemy enemy)
         {
-            info = "Enemy Info: " + enemy.getName() + " Health: " + enemy.getHealth() + " Attack: " + enemy.getAttack();
+            info = enemy.getPortrail()+"\nEnemy Info: " + enemy.getName() + ": Health: " + enemy.getHealth() + " Attack: " + enemy.getAttack();
         }
 
         public InfoAdapter(Item item)

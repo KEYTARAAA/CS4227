@@ -11,6 +11,7 @@ namespace CS4227.Builder
         public void reset() { }
         public void setName(String name) { }
         public void setMovementType(MovementInterface movementType) { }
+        public void setEyes(String eyes) { }
         public void setRoom(MazeRoom room) { }
         public void setRoom(int roomRow, int roomCol) { }
         public void setHealth(int health) { }

@@ -26,6 +26,10 @@ namespace CS4227.Builder
         public void setMovementType(MovementInterface movementType) {
             enemy.setMovementType(movementType);
         }
+        public void setEyes(string eyes)
+        {
+            enemy.setEyes(eyes);
+        }
 
         public void setRoom(int roomRow, int roomCol) {
             enemy.setRoom(roomRow, roomCol);

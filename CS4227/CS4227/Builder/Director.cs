@@ -20,6 +20,7 @@ namespace CS4227.Builder
             builder.setName("Blind Bear");
             MovementInterface moveType = new ClockwiseMove();
             builder.setMovementType(moveType);
+            builder.setEyes("x");
             Random r = new Random();
             int row = r.Next(0, 3);
             int col = r.Next(0, 3);
@@ -54,6 +55,7 @@ namespace CS4227.Builder
             builder.setName("Blind Snake");
             MovementInterface moveType = new NormalMove();
             builder.setMovementType(moveType);
+            builder.setEyes("x");
             Random r = new Random();
             int row = r.Next(0, 3);
             int col = r.Next(0, 3);

@@ -68,6 +68,7 @@ namespace CS4227.Commands
                     break;
             }
             lastCommand = command;
+            Console.WriteLine("***COMMAND: Controller setting up "+ command.getType() +" command***");
         }
 
         public void keyPressed(string s)
@@ -124,8 +125,10 @@ namespace CS4227.Commands
                     break;
                 default:
                     emptyCommand.execute();
+                    lastCommand = emptyCommand;
                     break;
             }
+            Console.WriteLine("***COMMAND: Executed "+lastCommand.getType()+" command***");
         }
 
         public string getLastCommand()

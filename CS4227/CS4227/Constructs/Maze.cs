@@ -602,7 +602,6 @@ namespace CS4227.Constructs
                 {
                     if (rooms[e.getRoomRow(), e.getRoomCol()] == getCurrentRoom() && (!e.getDead()))
                     {
-                        Console.WriteLine("\n" + e.ToString());
                         infoAdapter = new InfoAdapter(e);
                         Console.WriteLine(infoAdapter.getInfo());
                         e.speak();

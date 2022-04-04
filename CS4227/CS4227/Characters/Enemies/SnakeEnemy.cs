@@ -14,11 +14,24 @@ namespace CS4227.Characters.Enemies
         public SnakeEnemy()
         {
             this.type = "SNAKE";
+            this.eyes = ".";
+                            
+
         }
 
         public override void accept(VisitorInterface visitor)
         {
             visitor.visit(this);
+        }
+
+        public override string getPortrail()
+        {
+            return          "             ____\n" +
+                            "            / " + eyes + " " + eyes + "\\\n" +
+                            "            \\  ---<\n" +
+                            "             \\  /\n" +
+                            "   __________/ /\n" +
+                            "-=:___________/\n";
         }
     }
 }

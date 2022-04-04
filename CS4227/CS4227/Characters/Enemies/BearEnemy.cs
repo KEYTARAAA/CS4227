@@ -14,6 +14,7 @@ namespace CS4227.Characters.Enemies
         public BearEnemy()
         {
                this.type = "BEAR";
+            this.eyes = "o";
         }
 
         public override void accept(VisitorInterface visitor)
@@ -21,5 +22,15 @@ namespace CS4227.Characters.Enemies
             visitor.visit(this);
         }
 
+        public override string getPortrail()
+        {
+            return          " __         __\n" +
+                            "/  \\.-" + '"' + '"' + '"' + "-./  \\" + "\n" +
+                            "\\    -   -    /\n" +
+                            " |   " + eyes + "   " + eyes + "   |\n" +
+                            " \\  .-'''-.  /\n" +
+                            "  '-\\__Y__/-'\n" +
+                            "     `---`\n";
+        }
     }
 }
