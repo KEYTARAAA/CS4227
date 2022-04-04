@@ -12,12 +12,14 @@ namespace CS4227.Builder
 
         public SnakeEnemyBuilder()
         {
+            Console.WriteLine("***BUILDER: Creating new Builder class for SnakeEnemy***");
             reset();
         }
 
         public void reset()
         {
             this.enemy = new SnakeEnemy();
+            Console.WriteLine("***BUILDER: Creating/Reseting an Empty SnakeEnemy Object**");
         }
 
         public void setName(String name)
@@ -57,6 +59,7 @@ namespace CS4227.Builder
 
         public SnakeEnemy getResult()
         {
+            Console.WriteLine("***BUILDER: Getting result for SnakeEnemy***");
             return enemy;
         }
     }

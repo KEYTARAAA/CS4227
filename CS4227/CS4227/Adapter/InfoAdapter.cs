@@ -11,16 +11,19 @@ namespace CS4227.Adapter
         private readonly string info;
         public InfoAdapter(Enemy enemy)
         {
-            info = enemy.getPortrail()+"\nEnemy Info: " + enemy.getName() + ": Health: " + enemy.getHealth() + " Attack: " + enemy.getAttack();
+            Console.WriteLine("***PLUGGABLE ADAPTER: Creating new InfoAdapter for Enemy***");
+            info = enemy.getPortrait()+"\nEnemy Info: " + enemy.getName() + ": Health: " + enemy.getHealth() + " Attack: " + enemy.getAttack();
         }
 
         public InfoAdapter(Item item)
         {
+            Console.WriteLine("***PLUGGABLE ADAPTER: Creating new InfoAdapter for Item***");
             info = "Item Info: " + item.getName();
         }
 
         public String getInfo()
         {
+            Console.WriteLine("***PLUGGABLE ADAPTER: Getting info for current InfoAdapter***");
             return info;
         }
     }
