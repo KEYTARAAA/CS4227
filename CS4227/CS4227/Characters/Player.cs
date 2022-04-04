@@ -80,11 +80,13 @@ namespace CS4227.Characters
 
         public IMemento createMemento()
         {
+            Console.WriteLine("***MEMENTO: Making Player Memento for " + name + "***");
             return new PlayerMemento(name, roomRow, roomCol, health, attack, inventory, dead);
         }
 
         public void restore(IMemento memento)
         {
+            Console.WriteLine("***MEMENTO: Restoring Player Memento for " + name + "***");
             PlayerMemento playerMemento = memento as PlayerMemento;
             this.name = playerMemento.getName();
             this.roomRow = playerMemento.getRoomRow();

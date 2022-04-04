@@ -45,11 +45,13 @@ namespace CS4227.Characters.Items
         }
         public virtual IMemento createMemento()
         {
+            Console.WriteLine("***MEMENTO: Making Item Memento for " + name + "***");
             return new ItemMemento(name, roomRow, roomCol,active);
         }
 
         public virtual void restore(IMemento memento)
         {
+            Console.WriteLine("***MEMENTO: Restoring Item Memento for " + name + "***");
             ItemMemento itemMemento = memento as ItemMemento;
             if (itemMemento != null)
             {

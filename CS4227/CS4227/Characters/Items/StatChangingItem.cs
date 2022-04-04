@@ -21,11 +21,13 @@ namespace CS4227.Characters.Items
 
         public override IMemento createMemento()
         {
+            Console.WriteLine("***MEMENTO: Making StatChangingItem Memento for " + name + "***");
             return new StatChangingItemMemento(name, roomRow, roomCol, active, stats);
         }
 
         public override void restore(IMemento memento)
         {
+            Console.WriteLine("***MEMENTO: Restoring StatChangingItem Memento for "+name+"***");
             StatChangingItemMemento statChangingItemMemento = memento as StatChangingItemMemento;
             if (statChangingItemMemento != null)
             {

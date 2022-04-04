@@ -21,6 +21,7 @@ namespace CS4227
         int count = 0;
         public Game()
         {
+            Console.WriteLine("***FACADE: Using facade interface so game doesn't worry about things it doen't need to***");
             maze = new Maze();
             dispatchers = new List<Dispatcher>();
             Dispatcher dispatcher = new Dispatcher();
@@ -141,6 +142,7 @@ namespace CS4227
             string input = Console.ReadLine().ToUpper();
             string[] inputs = input.Split(' ');
 
+            Console.WriteLine("***COMMAND: recieving input***");
             controller.keyPressed(inputs[0]);
             game_event();
 

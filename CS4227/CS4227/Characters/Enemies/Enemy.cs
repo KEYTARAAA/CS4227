@@ -9,7 +9,7 @@ namespace CS4227.Characters.Enemies
 {
     abstract class Enemy : Character, Originator
     {
-        protected string sound = "", type = "ENEMY";
+        protected string sound = "", type = "ENEMY", eyes ="";
         MovementInterface movementType;
         bool newlyDead;
         public Enemy(string name, int startingRoomRow, int startingRoomCol, int health, int attack, string sound, MovementInterface movementType) : base(name, startingRoomRow, startingRoomCol, health, attack)
@@ -33,6 +33,7 @@ namespace CS4227.Characters.Enemies
         {
             Console.WriteLine(sound);
         }
+        abstract public string getPortrail();
 
         public void setNewlyDead(bool newlyDead)
         {
@@ -61,17 +62,19 @@ namespace CS4227.Characters.Enemies
         {
             dead = true;
             newlyDead = true;
-            Console.WriteLine("You have defeated " + name);
+            Console.WriteLine("You have defeated " + type + " " + name);
         }
 
 
         public IMemento createMemento()
         {
+            Console.WriteLine("***MEMENTO: Making Enemy Memento for " + type + " "  +name + "***");
             return new EnemyMemento(name, roomRow, roomCol, health, attack, type, sound, dead);
         }
 
         public void restore(IMemento memento)
         {
+            Console.WriteLine("***MEMENTO: Restoring Enemy Memento for " + type + " " + name + "***");
             EnemyMemento enemyMemento = memento as EnemyMemento;
             if (enemyMemento != null)
             {
@@ -89,6 +92,11 @@ namespace CS4227.Characters.Enemies
         public void setMovementType(MovementInterface movementType)
         {
             this.movementType = movementType;
+        }
+
+        public void setEyes(string eyes)
+        {
+            this.eyes = eyes;
         }
 
         public void setSound(string sound)
