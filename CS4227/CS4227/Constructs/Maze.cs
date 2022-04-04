@@ -55,12 +55,13 @@ namespace CS4227.Constructs
 
             introduction = new IntroductionVisitor();
 
-            Console.WriteLine("Type 1 for Super Easy, 2 for Easy, 3 for Hard, 4 for Impossible");
+            Console.WriteLine(CONSTS.DIFFICULTY_SELECTION);
             string input = Console.ReadLine().ToUpper();
             string[] inputs = input.Split(' ');
             while(inputs[0] != "1" & inputs[0] != "2" & inputs[0] != "3" & inputs[0] != "4")
             {
-                Console.WriteLine("Invalid Choice! Please type E for Easy or H for Hard");
+                Console.WriteLine("Invalid Choice!");
+                Console.WriteLine(CONSTS.DIFFICULTY_SELECTION);
                 input = Console.ReadLine().ToUpper();
                 inputs = input.Split(' ');
             }
