@@ -425,10 +425,12 @@ namespace CS4227.Constructs
 
         public void printMaze()
         {
-
+            Console.Write("[WIN]\n");
+            Console.Write("  |\n");
             for (int row = 0; row < rooms.GetLength(0); row++)
             {
-                string ns = " ";
+                Console.Write(" ");
+                string ns = "  ";
                 for (int col = 0; col < rooms.GetLength(1); col++)
                 {
                     Console.Write("["+rooms[row,col].getMapName()+"]");
